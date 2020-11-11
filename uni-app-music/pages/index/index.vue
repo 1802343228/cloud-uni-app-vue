@@ -4,11 +4,17 @@
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view>
+		<myAudio></myAudio>
 	</view>
+	
 </template>
 
 <script>
+	import myAudio from '../../components/myaudio.vue';
 	export default {
+		components:{
+			myAudio
+		},
 		data() {
 			return {
 				title: 'Hello'

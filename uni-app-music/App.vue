@@ -13,5 +13,8 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+	@import url("/common/css/free.css");
+	@import url("/common/css/animate.css");
+	@import url("/common/css/myanimate.css");
+	@import url("/common/css/iconfont.css");
 </style>
