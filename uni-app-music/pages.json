@@ -28,9 +28,7 @@
             "path" : "pages/music-detail/music-detail",
             "style" :                                                                                    
             {
-                "app-plus": {
-                	"titleNView": false
-                }
+                "navigationBarTitleText": "歌曲播放"
             }
             
         }
