@@ -6,11 +6,75 @@
 				"navigationBarTitleText": "首页"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/type/type",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+           
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/music-detail/music-detail",
+            "style" :                                                                                    
+            {
+                "app-plus": {
+                	"titleNView": false
+                }
+            }
+            
+        }
+        ,{
+            "path" : "pages/collect/collect",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"color": "#BDBDBD",
+		"selectedColor": "#F96750",
+		"list": [{
+			"iconPath": "static/tabbar/shouye.png",
+			"selectedIconPath": "static/tabbar/shouye-s.png",
+			"pagePath": "pages/index/index",
+			"text": "首页"
+		}, {
+			"iconPath": "static/tabbar/fenlei.png",
+			"selectedIconPath": "static/tabbar/fenlei-s.png",
+			"pagePath": "pages/type/type",
+			"text": "分类"
+		}, {
+			"iconPath": "static/tabbar/shoucang.png",
+			"selectedIconPath": "static/tabbar/shoucang-s.png",
+			"pagePath": "pages/collect/collect",
+			"text": "收藏"
+		},{
+			"iconPath": "static/tabbar/my.png",
+			"selectedIconPath": "static/tabbar/my-s.png",
+			"pagePath": "pages/my/my",
+			"text": "我的"
+		}]
 	}
 }
