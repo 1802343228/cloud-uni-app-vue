@@ -3,6 +3,7 @@ export default {
 		id:20001,
 		name:"火炎",
 		src:'/static/mp3/huoyan.mp3',
+		avatar:'/static/music/radurl.jpg',
 		singer:{
 			name:"女王蜂",
 			synopsis:"女王蜂（日语：じょおうばち）是日本的四人摇滚乐团，2009年在兵库县神户市组成。2011年正式出道，有“日本最神秘乐团”、“眼见不一定为凭乐团”之称"
@@ -12,6 +13,7 @@ export default {
 		id:20002,
 		name:"火炎op",
 		src:'/static/mp3/huoyan-op.mp3',
+		avatar:'/static/music/bg1.jpg',
 		singer:{
 			name:"女王蜂",
 			synopsis:"女王蜂（日语：じょおうばち）是日本的四人摇滚乐团，2009年在兵库县神户市组成。2011年正式出道，有“日本最神秘乐团”、“眼见不一定为凭乐团”之称"
@@ -20,6 +22,7 @@ export default {
 		id:20003,
 		name:"打上花火",
 		src:'/static/mp3/huahuo.mp3',
+		avatar:'/static/music/bg2.png',
 		singer:{
 			name:"米津玄师",
 			synopsis:"米津玄师（日语：米津 玄師／よねづ けんし Yonezu Kenshi；1991年3月10日－），是出生于日本德岛县的男性音乐家、创作歌手、插画家、摄影师、舞者。"
@@ -28,6 +31,7 @@ export default {
 		id:20004,
 		name:"我不希望你孤单的去面对整个喧哗世界",
 		src:'/static/mp3/comz.mp3',
+		avatar:'/static/music/bg3.png',
 		singer:{
 			name:"康姆士",
 			synopsis:"康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds康姆士yyds"

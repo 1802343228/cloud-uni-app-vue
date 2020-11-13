@@ -24,6 +24,11 @@ export default {
 			let singer = musics[curIndex].singer;
 			return singer.name
 		},
+		//歌曲封面
+		songUrl(state) {
+			let curIndex = state.currentPlayIndex;
+			return musics[curIndex].avatar
+		},
 		singerSynopsis(state) {
 			let curIndex = state.currentPlayIndex;
 			let singer = musics[curIndex].singer;

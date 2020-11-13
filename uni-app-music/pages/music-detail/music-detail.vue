@@ -14,8 +14,8 @@
 		</view>
 
 		<!-- 歌曲图片 -->
-		<view class="flex align-center justify-center" style="height: 320rpx;">
-			<image src="../../static/music/radurl.jpg" lazy-load style="border-radius: 35rpx;box-shadow: 0 2rpx 6rpx 0;height: 300rpx;"></image>
+		<view class="flex align-center justify-center" style="height: 420rpx;">
+			<image :src="songUrl" lazy-load mode="widthFix" style="border-radius: 35rpx;box-shadow: 0 2rpx 6rpx 0;"></image>
 		</view>
 
 		<!-- 进度部分 -->
@@ -67,7 +67,7 @@
 						<text class="font-weight-bold">{{ singerName }}</text>
 					</view>
 				</view>
-				<my-icon iconId="icon-jieshou" iconSize="65"></my-icon>
+				<my-icon iconId="icon-jieshao" iconSize="65" @my-click="showSingerSynopsis"></my-icon>
 			</view>
 
 			<view>
@@ -92,6 +92,15 @@
 				</block>
 			</scroll-view>
 		</view>
+		
+		<uni-popup ref="popup">
+			<view class="px-2 shadow" style="width: 600rpx;height: 850rpx;
+			border-radius: 40rpx;"
+			:class="nightStatus?'nightTheme':'bg-white'"
+			>
+			<text class="font">{{singerSynopsis}}</text>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
@@ -122,7 +131,7 @@ export default {
 			audioList: ({ audio }) => audio.audioList,
 			playStatus: ({audio}) => audio.playStatus
 		}),
-		...mapGetters(["audioName", "singerName", "singerSynopsis"])
+		...mapGetters(["audioName", "singerName", "singerSynopsis","songUrl"])
 	},
 	methods: {
 		...mapActions([
