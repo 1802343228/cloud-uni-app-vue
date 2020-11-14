@@ -1,0 +1,82 @@
+2020-11-14 17:12:03.566 [main] INFO  com.soft1851.user.Application - No active profile set, falling back to default profiles: default
+2020-11-14 17:12:04.050 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=7a3666c4-fea4-3f5e-9d2b-6e233edc3171
+2020-11-14 17:12:04.333 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2020-11-14 17:12:04.343 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2020-11-14 17:12:04.343 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-14 17:12:04.344 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-14 17:12:04.445 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-14 17:12:04.445 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 862 ms
+2020-11-14 17:12:04.491 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:12:04.491 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:12:04.496 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:12:04.496 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:12:04.634 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-14 17:12:05.082 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8003"]
+2020-11-14 17:12:05.106 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2020-11-14 17:12:05.322 [main] INFO  com.soft1851.user.Application - Started Application in 3.136 seconds (JVM running for 4.051)
+2020-11-14 17:12:08.589 [http-nio-8003-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-14 17:12:08.589 [http-nio-8003-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-11-14 17:12:08.593 [http-nio-8003-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2020-11-14 17:12:08.609 [http-nio-8003-exec-1] INFO  c.s.user.controller.HelloController - info:hello
+2020-11-14 17:12:08.609 [http-nio-8003-exec-1] INFO  c.s.user.controller.HelloController - warn:hello
+2020-11-14 17:12:08.609 [http-nio-8003-exec-1] INFO  c.s.user.controller.HelloController - error:hello
+2020-11-14 17:18:56.297 [main] INFO  com.soft1851.user.Application - No active profile set, falling back to default profiles: default
+2020-11-14 17:18:56.803 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=7a3666c4-fea4-3f5e-9d2b-6e233edc3171
+2020-11-14 17:18:57.067 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-11-14 17:18:57.078 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-11-14 17:18:57.078 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-14 17:18:57.078 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-14 17:18:57.190 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-14 17:18:57.190 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 875 ms
+2020-11-14 17:18:57.234 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:18:57.234 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:18:57.238 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:18:57.238 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:18:57.357 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-14 17:18:57.782 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-11-14 17:18:57.802 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-14 17:18:58.012 [main] INFO  com.soft1851.user.Application - Started Application in 2.936 seconds (JVM running for 3.835)
+2020-11-14 17:20:35.655 [main] INFO  com.soft1851.user.Application - The following profiles are active: dev
+2020-11-14 17:20:36.113 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=7a3666c4-fea4-3f5e-9d2b-6e233edc3171
+2020-11-14 17:20:36.387 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2020-11-14 17:20:36.395 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2020-11-14 17:20:36.396 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-14 17:20:36.396 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-14 17:20:36.506 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-14 17:20:36.507 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 835 ms
+2020-11-14 17:20:36.552 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:20:36.552 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:20:36.555 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:20:36.555 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:20:36.669 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-14 17:20:37.071 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8003"]
+2020-11-14 17:20:37.090 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2020-11-14 17:20:37.295 [main] INFO  com.soft1851.user.Application - Started Application in 2.879 seconds (JVM running for 3.654)
+2020-11-14 17:20:43.057 [http-nio-8003-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-14 17:20:43.057 [http-nio-8003-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-11-14 17:20:43.062 [http-nio-8003-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2020-11-14 17:20:43.077 [http-nio-8003-exec-1] INFO  c.s.user.controller.HelloController - info:hello
+2020-11-14 17:20:43.078 [http-nio-8003-exec-1] INFO  c.s.user.controller.HelloController - warn:hello
+2020-11-14 17:20:43.078 [http-nio-8003-exec-1] INFO  c.s.user.controller.HelloController - error:hello
+2020-11-14 17:21:57.803 [main] INFO  com.soft1851.user.Application - The following profiles are active: prod
+2020-11-14 17:21:58.278 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=7a3666c4-fea4-3f5e-9d2b-6e233edc3171
+2020-11-14 17:21:58.570 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8103 (http)
+2020-11-14 17:21:58.582 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8103"]
+2020-11-14 17:21:58.582 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-14 17:21:58.583 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-14 17:21:58.687 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-14 17:21:58.687 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 866 ms
+2020-11-14 17:21:58.734 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:21:58.734 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:21:58.737 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2020-11-14 17:21:58.737 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-11-14 17:21:58.865 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-14 17:21:59.283 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8103"]
+2020-11-14 17:21:59.304 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8103 (http) with context path ''
+2020-11-14 17:21:59.543 [main] INFO  com.soft1851.user.Application - Started Application in 3.026 seconds (JVM running for 3.885)
+2020-11-14 17:22:02.517 [http-nio-8103-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-14 17:22:02.517 [http-nio-8103-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-11-14 17:22:02.523 [http-nio-8103-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2020-11-14 17:22:02.539 [http-nio-8103-exec-1] INFO  c.s.user.controller.HelloController - info:hello
+2020-11-14 17:22:02.539 [http-nio-8103-exec-1] INFO  c.s.user.controller.HelloController - warn:hello
+2020-11-14 17:22:02.539 [http-nio-8103-exec-1] INFO  c.s.user.controller.HelloController - error:hello

@@ -5,7 +5,7 @@
 #
 ############################################################
 server:
-  port: 8003
+#  port: 8003
   tomcat:
     uri-encoding: UTF-8
     max-swallow-size: -1   # tomcat????2M???2M??????????????????100MB??-1??
@@ -16,6 +16,8 @@ server:
 #
 ############################################################
 spring:
+  profiles:
+    active: prod
   application:
     name: service-user
   jackson:
