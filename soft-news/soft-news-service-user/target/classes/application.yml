@@ -17,7 +17,7 @@ server:
 ############################################################
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: service-user
   jackson:
