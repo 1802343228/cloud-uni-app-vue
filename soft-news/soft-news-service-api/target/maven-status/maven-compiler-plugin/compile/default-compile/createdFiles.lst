@@ -1,0 +1,3 @@
+com\soft\api\controller\user\HelloControllerApi.class
+com\soft\api\controller\user\UserControllerApi.class
+com\soft\my\mapper\MyMapper.class

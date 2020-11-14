@@ -1,2 +1,5 @@
-com\soft1851\user\Application.class
+com\soft1851\user\mapper\AppUserMapper.class
+com\soft1851\user\mapper\FansMapper.class
 com\soft1851\user\controller\HelloController.class
+com\soft1851\user\Application.class
+com\soft1851\user\controller\UserController.class
