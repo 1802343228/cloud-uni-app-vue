@@ -20,10 +20,10 @@ public class SmsUtil {
 
     @Resource
     public AliyunResource aliyunResource;
+
     public void sendSms(String mobile,String code) {
         DefaultProfile profile = DefaultProfile.getProfile("ch-hangzhou",
-                aliyunResource.getAccessKeyId(),
-                aliyunResource.getAccessKeySecret());
+                "LTAI4G3rkARQwiGGkprRZwGm", "Okx5ZZrlOveWo6WzQR3tHtCrDx5Mdq");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
@@ -36,6 +36,7 @@ public class SmsUtil {
         request.putQueryParameter("SignName","智慧园区");
         request.putQueryParameter("TemplateCode","SMS_190277609");
         request.putQueryParameter("TemplateParam","{\"code\":\""+code+"\"}");
+
 
         try {
             CommonResponse response = client.getCommonResponse(request);
