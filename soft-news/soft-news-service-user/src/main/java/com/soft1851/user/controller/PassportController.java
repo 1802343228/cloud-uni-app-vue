@@ -19,6 +19,7 @@ public class PassportController implements PassportControllerApi {
 
     @Override
     public GraceResult getCode(String mobile, HttpServletRequest request) {
+        //获取用户ip
         String random = (int) ((Math.random() * 9 + 1)*100000) + "";
         System.out.println(random);
         smsUtil.sendSms(mobile,random);

@@ -13,8 +13,10 @@
         <module name="soft-news-common" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
   <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="soft-news-common" options="-parameters" />
       <module name="soft-news-model" options="-parameters" />
