@@ -1,3 +1,9 @@
-D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft\my\mapper\MyMapper.java
-D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft\api\controller\user\UserControllerApi.java
-D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft\api\controller\user\HelloControllerApi.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\controller\user\UserControllerApi.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\controller\user\HelloControllerApi.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\config\CorsConfig.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\BaseController.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\my\mapper\MyMapper.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\config\InterceptorConfig.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\config\Swagger2.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\controller\user\PassportControllerApi.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\interceptors\PassportInterceptor.java

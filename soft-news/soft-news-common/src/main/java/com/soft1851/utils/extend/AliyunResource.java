@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:aliyun.properties")
 @ConfigurationProperties(prefix = "aliyun")
-
 public class AliyunResource {
     private String accessKeyId;
     private String accessKeySecret;

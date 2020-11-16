@@ -1,3 +1,9 @@
-com\soft\api\controller\user\HelloControllerApi.class
-com\soft\api\controller\user\UserControllerApi.class
-com\soft\my\mapper\MyMapper.class
+com\soft1851\api\config\CorsConfig.class
+com\soft1851\api\controller\user\PassportControllerApi.class
+com\soft1851\api\controller\user\UserControllerApi.class
+com\soft1851\my\mapper\MyMapper.class
+com\soft1851\api\interceptors\PassportInterceptor.class
+com\soft1851\api\config\InterceptorConfig.class
+com\soft1851\api\controller\user\HelloControllerApi.class
+com\soft1851\api\BaseController.class
+com\soft1851\api\config\Swagger2.class
