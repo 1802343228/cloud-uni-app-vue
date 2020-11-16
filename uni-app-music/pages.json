@@ -41,6 +41,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/sort/sort",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -61,7 +70,7 @@
 		}, {
 			"iconPath": "static/tabbar/fenlei.png",
 			"selectedIconPath": "static/tabbar/fenlei-s.png",
-			"pagePath": "pages/type/type",
+			"pagePath": "pages/sort/sort",
 			"text": "分类"
 		}, {
 			"iconPath": "static/tabbar/shoucang.png",

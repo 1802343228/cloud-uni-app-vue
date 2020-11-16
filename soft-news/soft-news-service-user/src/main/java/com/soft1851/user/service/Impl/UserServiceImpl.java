@@ -46,7 +46,6 @@ public class UserServiceImpl  implements UserService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public AppUser createUser(String mobile) {
-        System.out.println("jinlaidsadasdsad");
         //若分库分表，数据库表主键id必须保证全局（全库）唯一，不能重复
         String userId = sid.nextShort();
         //构建用户对象
