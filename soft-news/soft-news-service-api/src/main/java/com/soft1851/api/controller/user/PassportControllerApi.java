@@ -42,4 +42,20 @@ public interface PassportControllerApi {
                        HttpServletRequest request,
                        HttpServletResponse response);
 
+    /**
+     * 退出登录
+     * @param request
+     * @param response
+     * @param userId
+     * @return
+     */
+    @PostMapping("/logout")
+    @ApiOperation(value = "用户退出登录",notes = "用户退出登录",
+    httpMethod = "POST"
+    )
+    GraceResult logout(HttpServletRequest request,
+            HttpServletResponse response,
+                       @RequestParam String userId
+                       );
+
 }
