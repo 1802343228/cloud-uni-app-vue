@@ -4,6 +4,7 @@ import com.soft1851.api.BaseController;
 import com.soft1851.api.controller.user.UserControllerApi;
 import com.soft1851.pojo.AppUser;
 import com.soft1851.pojo.bo.UpdateUserInfoBO;
+import com.soft1851.pojo.vo.AppUserVO;
 import com.soft1851.pojo.vo.UserAccountInfoVO;
 import com.soft1851.result.GraceResult;
 import com.soft1851.result.ResponseStatusEnum;
@@ -57,8 +58,21 @@ public class UserController extends BaseController implements UserControllerApi 
         return GraceResult.ok();
     }
 
+    @Override
+    public GraceResult getUserBasicInfo(String userId) {
+        if(StringUtils.isBlank(userId)) {
+            return GraceResult.errorCustom(ResponseStatusEnum.UN_LOGIN);
+        }
+        AppUser user = getUser(userId);
+        AppUserVO userVO = new AppUserVO();
+        BeanUtils.copyProperties(user,userVO);
+        return GraceResult.ok(userVO);
+    }
+
 
     private AppUser getUser(String userId) {
         return userService.getUser(userId);
     }
+
+    
 }
