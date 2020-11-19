@@ -1,0 +1,33 @@
+2020-11-19 14:35:46.089 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.5.Final
+2020-11-19 14:35:47.390 [background-preinit] WARN  o.s.h.c.j.Jackson2ObjectMapperBuilder - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-11-19 14:35:48.429 [main] INFO  com.soft1851.files.Application - The following profiles are active: dev
+2020-11-19 14:35:51.050 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-19 14:35:51.062 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-19 14:35:51.137 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30ms. Found 0 Redis repository interfaces.
+2020-11-19 14:35:51.716 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=b739007a-8aea-371f-9a28-f6786a3d0c5a
+2020-11-19 14:35:52.940 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8004 (http)
+2020-11-19 14:35:52.968 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8004"]
+2020-11-19 14:35:52.969 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-19 14:35:52.970 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-19 14:35:53.318 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-19 14:35:53.319 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4815 ms
+2020-11-19 14:35:53.704 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'fileUploadController' defined in file [D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-files\target\classes\com\soft1851\files\controller\FileUploadController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'uploadServiceImpl' defined in file [D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-files\target\classes\com\soft1851\files\service\impl\UploadServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.apache.catalina.webresources.FileResource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-11-19 14:35:53.708 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2020-11-19 14:35:53.743 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-11-19 14:35:54.302 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in com.soft1851.files.service.impl.UploadServiceImpl required a bean of type 'org.apache.catalina.webresources.FileResource' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.apache.catalina.webresources.FileResource' in your configuration.
+
