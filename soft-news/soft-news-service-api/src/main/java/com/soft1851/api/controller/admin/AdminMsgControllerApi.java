@@ -1,6 +1,7 @@
 package com.soft1851.api.controller.admin;
 
 import com.soft1851.pojo.bo.AdminLoginBO;
+import com.soft1851.pojo.bo.NewAdminBO;
 import com.soft1851.result.GraceResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,4 +34,8 @@ public interface AdminMsgControllerApi {
     @PostMapping("adminIsExist")
     @ApiOperation(value = "查询管理员是否存在",notes = "查询管理人员是否存在")
     GraceResult adminIsExist(@RequestParam String username);
+
+    @PostMapping("addNewAdmin")
+    @ApiOperation(value = "添加新的管理人员",notes = "添加新的管理人员",httpMethod = "POST")
+    GraceResult addNewAdmin(HttpServletResponse response, HttpServletRequest request, @RequestBody NewAdminBO newAdminBO);
 }

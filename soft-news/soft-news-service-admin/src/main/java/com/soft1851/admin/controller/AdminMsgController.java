@@ -6,8 +6,10 @@ import com.soft1851.api.controller.admin.AdminMsgControllerApi;
 import com.soft1851.exception.GraceException;
 import com.soft1851.pojo.AdminUser;
 import com.soft1851.pojo.bo.AdminLoginBO;
+import com.soft1851.pojo.bo.NewAdminBO;
 import com.soft1851.result.GraceResult;
 import com.soft1851.result.ResponseStatusEnum;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +47,29 @@ public class AdminMsgController extends BaseController implements AdminMsgContro
     @Override
     public GraceResult adminIsExist(String username) {
         checkAdminExist(username);
+        return GraceResult.ok();
+    }
+
+    @Override
+    public GraceResult addNewAdmin(HttpServletResponse response, HttpServletRequest request, NewAdminBO newAdminBO) {
+        //base64不为空，则代表人脸入库，否则需要用户输入密码和确认密码
+        if(StringUtils.isBlank(newAdminBO.getImg64())) {
+            if(StringUtils.isBlank(newAdminBO.getPassword()) ||
+            StringUtils.isBlank(newAdminBO.getConfirmPassword())
+            ) {
+                return GraceResult.errorCustom(ResponseStatusEnum.ADMIN_PASSWORD_NULL_ERROR);
+            }
+        }
+        //密码不为空 则必须判断俩次输入一致
+        if(StringUtils.isNotBlank(newAdminBO.getPassword())) {
+            if(!newAdminBO.getPassword().equalsIgnoreCase(newAdminBO.getConfirmPassword())) {
+                return GraceResult.errorCustom(ResponseStatusEnum.ADMIN_PASSWORD_ERROR);
+            }
+        }
+        //校验用户名唯一
+        checkAdminExist(newAdminBO.getUsername());
+        //调用service存入admin信息
+        adminUserService.createAdminUser(newAdminBO);
         return GraceResult.ok();
     }
 
