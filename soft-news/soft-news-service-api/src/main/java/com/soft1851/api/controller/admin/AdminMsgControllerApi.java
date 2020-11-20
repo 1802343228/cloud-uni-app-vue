@@ -5,6 +5,7 @@ import com.soft1851.pojo.bo.NewAdminBO;
 import com.soft1851.result.GraceResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,23 @@ public interface AdminMsgControllerApi {
     @ApiOperation(value = "查询管理员是否存在",notes = "查询管理人员是否存在")
     GraceResult adminIsExist(@RequestParam String username);
 
+    /**
+     * 添加管理员
+     * @param response
+     * @param request
+     * @param newAdminBO
+     * @return
+     */
     @PostMapping("addNewAdmin")
     @ApiOperation(value = "添加新的管理人员",notes = "添加新的管理人员",httpMethod = "POST")
     GraceResult addNewAdmin(HttpServletResponse response, HttpServletRequest request, @RequestBody NewAdminBO newAdminBO);
+
+
+    @ApiOperation(value = "查询admin列表",notes = "查询admin列表",httpMethod = "POST")
+    @PostMapping("/getAdminList")
+    GraceResult getAdminList(
+            @ApiParam(name="page",value = "查询下一页的第几页")
+            @RequestParam Integer page,
+            @ApiParam(name="pageSize", value = "分页查询每一页显示的条数")
+            @RequestParam Integer pageSize);
 }
