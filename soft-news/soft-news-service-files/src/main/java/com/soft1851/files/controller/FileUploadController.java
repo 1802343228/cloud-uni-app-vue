@@ -5,6 +5,7 @@ import com.soft1851.files.resource.FileResource;
 import com.soft1851.files.service.UploadService;
 import com.soft1851.result.GraceResult;
 import com.soft1851.result.ResponseStatusEnum;
+import com.soft1851.utils.extend.AliImageReviewUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -24,9 +25,13 @@ import java.util.List;
 public class FileUploadController implements FileUploadControllerApi {
     private final UploadService uploadService;
     private final FileResource fileResource;
+    private final AliImageReviewUtil aliImageReviewUtil;
 
     @Override
     public GraceResult uploadFace(String userId, MultipartFile file) throws Exception {
+        if(StringUtils.isBlank(userId)) {
+            return GraceResult.errorCustom(ResponseStatusEnum.UN_LOGIN);
+        }
         String path;
         if(file != null) {
             String fileName = file.getOriginalFilename();
@@ -54,11 +59,14 @@ public class FileUploadController implements FileUploadControllerApi {
         } else {
             return GraceResult.errorCustom(ResponseStatusEnum.FILE_UPLOAD_FAILD);
         }
-        return GraceResult.ok(finalPath);
+        return GraceResult.ok(doAliImageReview(finalPath));
     }
 
     @Override
     public GraceResult uploadSomeFiles(String userId, MultipartFile[] files) throws Exception {
+        if(StringUtils.isBlank(userId)) {
+            return GraceResult.errorCustom(ResponseStatusEnum.UN_LOGIN);
+        }
         //声明list,用于存放多个图片的地址路径，返回到前端
         List<String> imageUrlList = new ArrayList<>();
         if(files != null && files.length > 0 ) {
@@ -95,5 +103,28 @@ public class FileUploadController implements FileUploadControllerApi {
         }
 
         return GraceResult.ok(imageUrlList);
+    }
+
+    /**
+     * 检测不通过的默认图片
+     */
+    public static final String FAILED_IMAGE_URL = "http://120.55.50.130:8081/group1/M00/00/00/eDcygl-0_02AfwyYAAFMbHinpq0372.jpg";
+
+    /**
+     *阿里云智能检测
+     */
+    private String doAliImageReview(String pendingImageUrl) {
+        log.info(pendingImageUrl);
+        System.out.println("检测检测检测");
+        boolean result = false;
+        try {
+            result = aliImageReviewUtil.reviewImage(pendingImageUrl);
+        }catch (Exception e) {
+            System.out.println("图片识别出错");
+        }
+        if(!result) {
+            return FAILED_IMAGE_URL;
+        }
+        return pendingImageUrl;
     }
 }

@@ -33,6 +33,6 @@ spring:
 #
 ############################################################
 fdfs:
-  connect-timeout: 30
-  so-timeout: 30
+  connect-timeout: 30000
+  so-timeout: 30000
   tracker-list: 120.55.50.130:22122

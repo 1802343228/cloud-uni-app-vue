@@ -6,6 +6,7 @@ import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.soft1851.files.resource.FileResource;
 import com.soft1851.files.service.UploadService;
+import com.soft1851.utils.RedisOperator;
 import com.soft1851.utils.extend.AliyunResource;
 import lombok.RequiredArgsConstructor;
 import org.n3r.idworker.Sid;
@@ -22,10 +23,11 @@ import java.io.InputStream;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UploadServiceImpl implements UploadService {
     public final FastFileStorageClient fastFileStorageClient;
-
+    public final RedisOperator redis;
     public final FileResource fileResource;
     public final AliyunResource aliyunResource;
     public final Sid sid;
+
 
     @Override
     public String uploadFdfs(MultipartFile file, String fileExtName) throws Exception {
