@@ -3,6 +3,7 @@ package com.soft1851.admin.controller;
 import com.soft1851.admin.service.AdminUserService;
 import com.soft1851.api.BaseController;
 import com.soft1851.api.controller.admin.AdminMsgControllerApi;
+import com.soft1851.exception.GraceException;
 import com.soft1851.pojo.AdminUser;
 import com.soft1851.pojo.bo.AdminLoginBO;
 import com.soft1851.result.GraceResult;
@@ -40,6 +41,20 @@ public class AdminMsgController extends BaseController implements AdminMsgContro
             return GraceResult.errorCustom(ResponseStatusEnum.ADMIN_NOT_EXIT_ERROR);
         }
     }
+
+    @Override
+    public GraceResult adminIsExist(String username) {
+        checkAdminExist(username);
+        return GraceResult.ok();
+    }
+
+    private void checkAdminExist(String username) {
+        AdminUser admin = adminUserService.queryAdminByUsername(username);
+        if(admin != null) {
+            GraceException.display(ResponseStatusEnum.ADMIN_USERNAME_EXIST_ERROR);
+        }
+    }
+
 
     private void doLoginSettings(AdminUser admin,HttpServletRequest request,HttpServletResponse response) {
         //保存token到redis

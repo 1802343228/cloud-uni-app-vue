@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,4 +24,13 @@ public interface AdminMsgControllerApi {
                            HttpServletRequest request,
                            HttpServletResponse response
                            );
+
+    /**
+     * 查询管理员是否存在
+     * @param username
+     * @return
+     */
+    @PostMapping("adminIsExist")
+    @ApiOperation(value = "查询管理员是否存在",notes = "查询管理人员是否存在")
+    GraceResult adminIsExist(@RequestParam String username);
 }
