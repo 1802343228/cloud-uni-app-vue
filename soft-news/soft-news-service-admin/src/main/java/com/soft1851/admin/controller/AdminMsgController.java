@@ -86,6 +86,17 @@ public class AdminMsgController extends BaseController implements AdminMsgContro
         return GraceResult.ok(result);
     }
 
+    @Override
+    public GraceResult adminLogout(String adminId, HttpServletRequest request, HttpServletResponse response) {
+        //从redis中删除admin的会话token
+        redis.del(REDIS_ADMIN_TOKEN+":"+adminId);
+        //从cookie中清理admin登录相关信息
+        deleteCookie(request,response,"aToken");
+        deleteCookie(request,response,"aId");
+        deleteCookie(request,response,"aName");
+        return GraceResult.ok();
+    }
+
     private void checkAdminExist(String username) {
         AdminUser admin = adminUserService.queryAdminByUsername(username);
         if(admin != null) {

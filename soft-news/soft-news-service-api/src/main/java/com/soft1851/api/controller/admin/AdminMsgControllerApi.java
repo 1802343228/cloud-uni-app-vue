@@ -48,6 +48,12 @@ public interface AdminMsgControllerApi {
     GraceResult addNewAdmin(HttpServletResponse response, HttpServletRequest request, @RequestBody NewAdminBO newAdminBO);
 
 
+    /**
+     * 查询admin列表
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @ApiOperation(value = "查询admin列表",notes = "查询admin列表",httpMethod = "POST")
     @PostMapping("/getAdminList")
     GraceResult getAdminList(
@@ -55,4 +61,8 @@ public interface AdminMsgControllerApi {
             @RequestParam Integer page,
             @ApiParam(name="pageSize", value = "分页查询每一页显示的条数")
             @RequestParam Integer pageSize);
+
+    @PostMapping("adminLogout")
+    @ApiOperation(value = "管理员注销",notes = "管理员注销",httpMethod = "POST")
+    GraceResult adminLogout(@RequestParam String adminId,HttpServletRequest request,HttpServletResponse response);
 }
