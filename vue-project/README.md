@@ -1,4 +1,4 @@
-# vue-project
+# music-admin-vue
 
 ## Project setup
 ```

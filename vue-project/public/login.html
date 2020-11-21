@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin登录</title>
+    <style>
+     .box1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("../assets/login-bg.jpg");
+    }
+  
+    .border-round {
+      margin-left: -80px;
+   }
+ 
+    .head {
+      flex:0 0 40%;
+      align-content: center;
+    }
+  
+    .input1 {
+      padding-left: 10px;
+      height: 50px; 
+      width: 100%;
+      margin-top: 30px;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+    }
+  
+    .content {
+      flex:0 0 30%;
+      margin-left: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  
+    .content-head {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: flex-end;
+      height: 60px;
+      border-bottom: 2px solid white;
+    }
+  
+    .title {
+      font-size: 36px;
+      font-weight: bold;
+      color: white;
+    }
+  
+    .font {
+      font-size: 16px;
+      color: rgb(232, 232, 232);
+    }
+  
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      margin-top: 20px;
+    }
+  
+    .font1 {
+      font-size: 14px;
+      color: #eeeeee;
+    }
+  
+    .login-btn {
+      width: 100%;
+      height: 50px;
+      margin-top: 10px;
+      color: white;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      background-color: rgb(114, 205, 183);
+    }
+    .img {
+      width: 600px; 
+      height: 370px; 
+      border-radius: 8px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app" class="box1">
+  
+        <div class="head">
+          <img v-show="!isFaceLogin" class="img" src="../assets/vm5.png" alt="">
+          <video v-show="isFaceLogin" id="video" width="500px"  height="370px" class="border-round"></video>
+          <canvas v-show="isFaceLogin" id="canvas" width="500px"  height="370px" class="border-round"></canvas>
+        </div>
+    
+    
+        <div class="content">
+        <div style="margin-bottom: 10px;">
+          <span class="title">管理员登陆</span>
+        </div>
+        <div class="content-head">
+           <p class="font" style="margin-bottom: 20px;">请使用账号密码或人脸登录</p>
+           <img src="../assets/login-icon.png" style="width: 50px; height: 50px; margin-bottom: 10px;" alt="">
+        </div>
+        <div style="display: flex; flex-direction: column; width: 100%;">
+          <input v-model="username" type="text" placeholder="username" class="input1">
+          <input v-model="password" :disabled="isFaceLogin == true" type="pasword" placeholder="password" class="input1">
+        </div>
+        
+        <div class="bottom">
+          <div style="display: flex; align-items: center;">
+            <input type="checkbox" name="form-face"
+             style="zoom: 130%;"
+              v-model="isFaceLogin"
+               @change="userFaceLogin()"/>
+            <span class="font">人脸识别登录</span>
+          </div>
+          <div>
+            <span class="font1">建议在Chorem下使用本系统</span>
+          </div>
+        </div>
+    
+        <button class="login-btn" @click="login()">戳我登录{{message}}</button>
+        </div>
+      </div>
+</body>
+</html>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+      var app = new Vue({
+          el:'#app',
+          data:{
+              message: 'Hello Vue!',
+              isFaceLogin:false,//是否开启人脸登录
+              mediaStreamTrack:null,//全局视频对象
+              video:null,
+              isCameraOpen:false,//摄像头是否打开
+              username:'',
+              password:'',
+          },
+          created() {
+              
+          },
+          methods: {
+              login() {
+                  let username = this.username
+                  if(username == null || username == undefined || username == '') {
+                      alert('用户名不能为空！')
+                      return
+                  }
+                  //使用人脸登录认证
+                  if(this.isFaceLogin) {
+                      let video = document.getElementById('video')
+                      let canvas = document.getElementById('canvas')
+                      let ctx = canvas.getContext('2d')
+                      ctx.drawImage(video,0,0,630,370)
+                      let img = document.getElementById('canvas').toDataURL()
+                      //截取Base64图片
+                      console.log(img)
+                      let img64 = img.split('base64,')[1]
+                  }else {
+                      let password = this.password
+                      if(password == null || password == undefined || password == '' ){
+                          alert('密码不能为空')
+                          return
+                      }
+                      let adminUserLogin = {}
+                      adminUserLogin.username = username,
+                      adminUserLogin.password = password
+                      //用户名密码登录
+                      axios.post(
+                          'http://crq.com:8005/adminMsg/adminLogin',
+                          adminUserLogin
+                      ).then((res) => {
+                          console.log(res.data)
+                          if(res.data.status == 200) {
+                              alert('登录成功')
+                              this.username = ''
+                              this.password = ''
+                          }else {
+                              alert(res.data.msg)
+                          }
+                      })
+                  }
+              },
+              userFaceLogin() {
+                  if(this.isFaceLogin) {
+                      this.openFace()
+                  }
+              },
+              openFace() {
+                  //若摄像头已经开启，则不继续
+                  if(this.isCameraOpen) {
+                      return
+                  }
+                  let constraints = {
+                      video: { width:630, height:370 },
+                      audio:false,
+                  }
+                  //获得video摄像头
+                  video = document.getElementById('video')
+                  let promise = navigator.mediaDevices.getUserMedia(constraints)
+                  promise.then((mediaStream) => {
+                      mediaStreamTrack = mediaStream.getVideoTracks()
+                      video.srcObject = mediaStream
+                      video.play()
+                  })
+                  video.onloademetadata = function() {
+                      this.isCameraOpen = true
+                  }
+              },
+              closeFace() {
+                  let stream = video.srcObject
+                  if(stream == null) {
+                      return
+                  }
+                  let tracks = stream.getTracks()
+                  tracks.forEach(function(track) {
+                      track.stop()
+                  })
+                  video.srcObject = null
+              }
+          },
+      })
+  </script>
+
+  
