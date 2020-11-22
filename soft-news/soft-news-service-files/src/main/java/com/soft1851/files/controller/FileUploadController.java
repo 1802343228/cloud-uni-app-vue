@@ -9,12 +9,18 @@ import com.soft1851.utils.extend.AliImageReviewUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author crq
@@ -26,6 +32,7 @@ public class FileUploadController implements FileUploadControllerApi {
     private final UploadService uploadService;
     private final FileResource fileResource;
     private final AliImageReviewUtil aliImageReviewUtil;
+    private final GridFsTemplate gridFsTemplate;
 
     @Override
     public GraceResult uploadFace(String userId, MultipartFile file) throws Exception {
@@ -104,6 +111,26 @@ public class FileUploadController implements FileUploadControllerApi {
         }
 
         return GraceResult.ok(imageUrlList);
+    }
+
+    @Override
+    public GraceResult uploadToGridFs(String username, MultipartFile multipartFile) throws Exception {
+        Map<String,String> metaData = new HashMap<>(4);
+        InputStream is = null;
+        try{
+            is = multipartFile.getInputStream();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        String fileName = multipartFile.getOriginalFilename();;
+        assert is != null;
+        ObjectId objectId = gridFsTemplate.store(is,fileName,metaData);
+        try{
+            is.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return GraceResult.ok(objectId.toHexString());
     }
 
     /**

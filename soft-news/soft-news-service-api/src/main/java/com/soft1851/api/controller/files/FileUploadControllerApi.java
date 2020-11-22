@@ -38,4 +38,17 @@ public interface FileUploadControllerApi {
     GraceResult uploadSomeFiles(@RequestParam String userId,
                                 MultipartFile[] files
                                 )throws Exception;
+
+    /**
+     * 管理员人员入库
+     * @param username
+     * @param multipartFile
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "管理员人脸入库",notes = "管理员人脸入库",httpMethod = "POST")
+    @PostMapping("uploadGridFS")
+    GraceResult uploadToGridFs(@RequestParam String username,
+                               @RequestParam(value = "file")MultipartFile multipartFile
+                               ) throws Exception;
 }

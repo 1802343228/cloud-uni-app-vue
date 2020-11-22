@@ -20,6 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 @Api(value = "管理员维护",tags = {"管理员维护controller"})
 @RequestMapping("adminMsg")
 public interface AdminMsgControllerApi {
+    /**
+     * 登录
+     * @param adminLoginBO
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping("adminLogin")
     @ApiOperation(value = "管理员登录",notes = "管理员登录",httpMethod = "POST")
     GraceResult adminLogin(@RequestBody AdminLoginBO adminLoginBO,
@@ -62,7 +69,26 @@ public interface AdminMsgControllerApi {
             @ApiParam(name="pageSize", value = "分页查询每一页显示的条数")
             @RequestParam Integer pageSize);
 
+
+    /**
+     * 管理员退出登录
+     * @param adminId
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping("adminLogout")
     @ApiOperation(value = "管理员注销",notes = "管理员注销",httpMethod = "POST")
     GraceResult adminLogout(@RequestParam String adminId,HttpServletRequest request,HttpServletResponse response);
+
+    /**
+     * 更新
+     * @param request
+     * @param response
+     * @param newAdminBO
+     * @return
+     */
+    @PostMapping("updateAdmin")
+    @ApiOperation(value = "修改管理员信息",notes = "修改管理员信息",httpMethod = "POST")
+    GraceResult updateAdmin(HttpServletRequest request,HttpServletResponse response,@RequestBody NewAdminBO newAdminBO);
 }
