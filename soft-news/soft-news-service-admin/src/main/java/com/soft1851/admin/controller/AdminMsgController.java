@@ -103,6 +103,7 @@ public class AdminMsgController extends BaseController implements AdminMsgContro
         return GraceResult.ok(newAdminBO);
     }
 
+
     private void checkAdminExist(String username) {
         AdminUser admin = adminUserService.queryAdminByUsername(username);
         if(admin != null) {

@@ -6,10 +6,7 @@ import com.soft1851.result.GraceResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,4 +88,7 @@ public interface AdminMsgControllerApi {
     @PostMapping("updateAdmin")
     @ApiOperation(value = "修改管理员信息",notes = "修改管理员信息",httpMethod = "POST")
     GraceResult updateAdmin(HttpServletRequest request,HttpServletResponse response,@RequestBody NewAdminBO newAdminBO);
+
+
+
 }
