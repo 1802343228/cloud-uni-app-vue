@@ -1,10 +1,15 @@
 com\soft1851\api\controller\user\PassportControllerApi.class
 com\soft1851\my\mapper\MyMapper.class
 com\soft1851\api\interceptors\PassportInterceptor.class
+com\soft1851\api\controller\category\CategoryControllerApi.class
 com\soft1851\api\interceptors\UserActiveInterceptor.class
 com\soft1851\api\controller\user\HelloControllerApi.class
+com\soft1851\api\config\CloudConfig.class
 com\soft1851\api\BaseController.class
+com\soft1851\api\controller\article\ArticleControllerApi.class
 com\soft1851\api\config\CorsConfig.class
+com\soft1851\api\controller\admin\AdminMsgControllerApi.class
+com\soft1851\api\interceptors\AdminTokenInterceptor.class
 com\soft1851\api\controller\user\UserControllerApi.class
 com\soft1851\api\aspect\ServiceLogAspect.class
 com\soft1851\api\config\InterceptorConfig.class
@@ -13,3 +18,4 @@ com\soft1851\api\interceptors\BaseInterceptor.class
 com\soft1851\api\interceptors\UserTokenInterceptor.class
 com\soft1851\api\controller\user\FansControllerApi.class
 com\soft1851\api\config\Swagger2.class
+com\soft1851\api\controller\admin\FriendLinkControllerApi.class

@@ -29,10 +29,11 @@ public class Swagger2 {
         Predicate<RequestHandler> adminPredicate = RequestHandlerSelectors.basePackage("com.soft1851.admin.controller");
         Predicate<RequestHandler> userPredicate = RequestHandlerSelectors.basePackage("com.soft1851.user.controller");
         Predicate<RequestHandler> filesPredicate = RequestHandlerSelectors.basePackage("com.soft1851.files.controller");
+        Predicate<RequestHandler> articlePredicate = RequestHandlerSelectors.basePackage("com.soft1851.article.controller");
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(Predicates.or(userPredicate, adminPredicate, filesPredicate))
+                .apis(Predicates.or(userPredicate, adminPredicate, filesPredicate,articlePredicate))
                 .paths(PathSelectors.any())
                 .build();
     }

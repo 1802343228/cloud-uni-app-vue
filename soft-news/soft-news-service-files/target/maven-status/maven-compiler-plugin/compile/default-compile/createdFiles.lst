@@ -1,7 +1,9 @@
 com\soft1851\files\resource\FileResource$FileResourceBuilder.class
 META-INF\spring-configuration-metadata.json
 com\soft1851\files\service\impl\UploadServiceImpl.class
+com\soft1851\files\controller\GridFsController.class
 com\soft1851\files\service\UploadService.class
+com\soft1851\files\FilesApplication.class
 com\soft1851\files\resource\FileResource.class
 com\soft1851\files\controller\FileUploadController.class
-com\soft1851\files\Application.class
+com\soft1851\files\GridFsConfig.class
