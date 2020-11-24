@@ -1,11 +1,16 @@
 package com.soft1851.files.controller;
 
+import com.mongodb.client.gridfs.GridFSBucket;
+import com.mongodb.client.gridfs.GridFSFindIterable;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.mongodb.client.model.Filters;
 import com.soft1851.api.controller.files.FileUploadControllerApi;
+import com.soft1851.exception.GraceException;
 import com.soft1851.files.resource.FileResource;
 import com.soft1851.files.service.UploadService;
 import com.soft1851.result.GraceResult;
 import com.soft1851.result.ResponseStatusEnum;
+import com.soft1851.utils.FileUtil;
 import com.soft1851.utils.extend.AliImageReviewUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +44,7 @@ public class FileUploadController implements FileUploadControllerApi {
     private final FileResource fileResource;
     private final AliImageReviewUtil aliImageReviewUtil;
     private final GridFsTemplate gridFsTemplate;
+    private final GridFSBucket gridFSBucket;
 
     @Override
     public GraceResult uploadFace(String userId, MultipartFile file) throws Exception {
@@ -162,6 +167,35 @@ public class FileUploadController implements FileUploadControllerApi {
             e.printStackTrace();
         }
         return GraceResult.ok(new String(bytes));
+    }
+
+    @Override
+    public GraceResult readFace64(String faceId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        File myFace = readFileFormGridsFs(faceId);
+        //转换人脸为base64
+        String base64Face = FileUtil.fileToBase64(myFace);
+        return GraceResult.ok(base64Face);
+    }
+
+    private File readFileFormGridsFs(String faceId) throws Exception{
+        GridFSFindIterable files = gridFSBucket.find(Filters.eq("_id",new ObjectId(faceId)));
+        GridFSFile gridFSFile = files.first();
+        if(gridFSFile == null) {
+            GraceException.display(ResponseStatusEnum.FILE_NOT_EXIST_ERROR);
+        }
+        String fileName = gridFSFile.getFilename();
+        System.out.println(fileName);
+        //获取文件流，保存文件到本地或者服务器的临时目录
+        File fileTemp = new File("D:/1");
+        if(!fileTemp.exists()) {
+            fileTemp.mkdirs();
+        }
+        File myFile = new File("D:/1/"+fileName);
+        //创建文件输出流
+        OutputStream os = new FileOutputStream(myFile);
+        //下载到服务器或本地
+        gridFSBucket.downloadToStream(new ObjectId(faceId),os);
+        return myFile;
     }
 
     /**

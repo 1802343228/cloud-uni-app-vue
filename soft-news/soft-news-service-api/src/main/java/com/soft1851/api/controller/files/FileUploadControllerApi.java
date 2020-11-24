@@ -69,4 +69,10 @@ public interface FileUploadControllerApi {
     GraceResult readInGridFs(@RequestParam String faceId, HttpServletRequest request,
                              HttpServletResponse response
     )throws Exception;
+
+    @GetMapping("/readFace64")
+    GraceResult readFace64(@RequestParam String faceId,
+                           HttpServletRequest request,
+                           HttpServletResponse response
+                           )throws Exception;
 }

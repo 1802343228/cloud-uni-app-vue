@@ -276,3 +276,7 @@ org.springframework.web.multipart.MultipartException: Current request is not a m
 2020-11-22 16:45:18.144 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
 2020-11-22 16:45:18.162 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
 2020-11-22 16:45:18.413 [main] INFO  com.soft1851.files.FilesApplication - Started FilesApplication in 7.674 seconds (JVM running for 8.975)
+2020-11-22 16:46:53.979 [http-nio-8004-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-22 16:46:53.979 [http-nio-8004-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-11-22 16:46:53.995 [http-nio-8004-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 16 ms
+2020-11-22 16:46:55.226 [http-nio-8004-exec-1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:19}] to 120.55.50.130:27017
