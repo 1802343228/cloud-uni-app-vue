@@ -2,6 +2,8 @@ package com.soft1851.admin.service;
 
 import com.soft1851.pojo.mo.FriendLinkMO;
 
+import java.util.List;
+
 /**
  * @author crq
  */
@@ -11,4 +13,10 @@ public interface FriendLinkService {
      * @param friendLinkMO
      */
     void saveOrUpdateFriendLink(FriendLinkMO friendLinkMO);
+
+    /**
+     * 查询友情链接
+     * @return
+     */
+    List<FriendLinkMO> queryAllFriendLinkList();
 }
