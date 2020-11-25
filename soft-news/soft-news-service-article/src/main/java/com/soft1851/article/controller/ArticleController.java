@@ -81,4 +81,16 @@ public class ArticleController extends BaseController implements ArticleControll
         articleService.updateArticleStatus(articleId,pendingStatus);
         return GraceResult.ok();
     }
+
+    @Override
+    public GraceResult delete(String userId, String articleId) {
+        articleService.deleteArticle(userId,articleId);
+        return GraceResult.ok();
+    }
+
+    @Override
+    public GraceResult withdraw(String userId, String articleId) {
+        articleService.withdrawArticle(userId,articleId);
+        return GraceResult.ok();
+    }
 }

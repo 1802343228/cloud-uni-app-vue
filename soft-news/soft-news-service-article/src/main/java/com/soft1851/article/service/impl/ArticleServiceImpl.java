@@ -13,6 +13,7 @@ import com.soft1851.pojo.Category;
 import com.soft1851.pojo.bo.NewArticleBO;
 import com.soft1851.result.ResponseStatusEnum;
 import com.soft1851.utils.extend.AliTextReviewUtil;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -29,16 +29,16 @@ import java.util.Date;
  */
 @Service
 @Slf4j
-//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ArticleServiceImpl implements ArticleService {
-    @Autowired
-    private ArticleMapper articleMapper;
-    @Resource
-    private  Sid sid;
-    @Autowired
-    private  ArticleMapperCustom articleMapperCustom;
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class ArticleServiceImpl  implements ArticleService {
+    private final ArticleMapper articleMapper;
+    private final ArticleMapperCustom articleMapperCustom;
+    private final Sid sid;
+
+
     @Autowired
     private  AliTextReviewUtil aliTextReviewUtil;
+
 
     @Override
     public void createArticle(NewArticleBO newArticleBO, Category category) {
@@ -85,6 +85,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     }
 
+    @Transactional(rollbackFor = {Exception.class})
     @Override
     public void updateArticleStatus(String articleId, Integer pendingStatus) {
         Example example = new Example(Article.class);
@@ -101,5 +102,38 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void updateAppointToPublish() {
         articleMapperCustom.updateAppointToPublish();
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public void deleteArticle(String userId, String articleId) {
+        Example articleExample = makeExampleCriteria(userId,articleId);
+        Article pending = new Article();
+        pending.setIsDelete(YesOrNo.YES.type);
+        int result = articleMapper.updateByExampleSelective(pending,articleExample);
+        if(result != 1) {
+            GraceException.display(ResponseStatusEnum.ARTICLE_DELETE_ERROR);
+        }
+    }
+
+    private Example makeExampleCriteria(String userId, String articleId) {
+        Example articleExample = new Example(Article.class);
+        Example.Criteria criteria = articleExample.createCriteria();
+        criteria.andEqualTo("id",articleId);
+        criteria.andEqualTo("publishUserId",userId);
+        return articleExample;
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public void withdrawArticle(String userId, String articleId) {
+        Example articleExample = makeExampleCriteria(userId,articleId);
+        Article pending = new Article();
+        pending.setArticleStatus(ArticleReviewStatus.WITHDRAW.type);
+
+        int result = articleMapper.updateByExampleSelective(pending,articleExample);
+        if(result != 1) {
+            GraceException.display(ResponseStatusEnum.ARTICLE_DELETE_ERROR);
+        }
     }
 }

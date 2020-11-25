@@ -29,7 +29,7 @@ public class AliTextReviewUtil {
     private AliyunResource aliyunResource;
 
     public String reviewTextContent(String content) {
-        IClientProfile profile = DefaultProfile.getProfile("cn-shanghai", "LTAI4G3rkARQwiGGkprRZwGm", "Okx5ZZrlOveWo6WzQR3tHtCrDx5Mdq");
+        IClientProfile profile = DefaultProfile.getProfile("cn-shanghai", "LTAI4G12S8zv5nLJr7t5K8ws", "TGb8iDSktxsVWWIQLnrCkHgTqAOgog");
         IAcsClient client = new DefaultAcsClient(profile);
         TextScanRequest textScanRequest = new TextScanRequest();
         // 指定api返回格式

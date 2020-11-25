@@ -26,4 +26,13 @@ public interface ArticleService {
      * 更新定时发布为即使发布
      */
     void updateAppointToPublish();
+
+    /**
+     * 删除文章
+     * @param userId
+     * @param articleId
+     */
+    void deleteArticle(String userId,String articleId);
+
+    void withdrawArticle(String userId,String articleId);
 }
