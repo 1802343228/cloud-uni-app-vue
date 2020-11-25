@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="css/detail/detail.css"/>
+    <link rel="stylesheet" type="text/css" href="css/detail/comments.css"/>
+    <link rel="stylesheet" type="text/css" href="css/detail/middleBar.css"/>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css"/>
+    <title>文章预览页面</title>
+</head>
+<body>
+    <div>
+        <!-- 中间主体部分 -->
+        <div id="app" class="container">
+            <div class="big-title">{{article.title}}</div>
+            <div class="detail-really">
+                <!-- 左侧分享 -->
+                <div class="left-social">
+                    <div class="date-title">
+                        <span class="year">{{year}}</span>
+                    </div>
+                    <div class="back-year-line"></div>
+                    <div class="date-md">{{monthDay}}</div>
+                    <div class="date-times">{{time}}</div>
+                    <div class="writer-name">{{userInfo.nickname}}</div>
+                </div>
+
+                <!-- 中间文章主体 -->
+                <div class="container-middle">
+                    <div class="article-wrapper">
+                        <div class="content" v-html="article.content"></div>
+                        <div class="declare">本平台所有内容仅供测试</div>
+                    </div>
+                </div>
+
+                <div class="blank-right"></div>
+            </div>
+        </div>
+    </div>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/jquery-3.4.1.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="libs/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript">
+		var articleList = new Vue({
+            el: '#app',
+            data:{
+                article:{},
+                userInfo:{
+                    nickname:'mob',
+                },
+                
+            },
+            created() {
+                this.previewArticle()
+            },
+            mounted() {
+                
+            },
+            methods: {
+                previewArticle() {
+                    var articleBOStr = sessionStorage.getItem('previewArticleInfo')
+                  
+                    var article = JSON.parse(articleBOStr)
+                    this.article = article
+                    //日期格式化
+                    var year = moment(new Date()).format('YYYY')
+                    this.year = year
+                    var monthDay = moment(new Date()).format('MM/DD')
+                    this.monthDay = monthDay
+                    var time = moment(new Date()).format('HH:mm')
+                    this.time = time
+                },
+            },
+        })
+        </script>
+</body>
+</html>
