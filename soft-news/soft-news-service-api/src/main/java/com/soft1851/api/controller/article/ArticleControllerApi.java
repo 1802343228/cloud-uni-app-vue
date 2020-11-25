@@ -18,7 +18,13 @@ import javax.validation.Valid;
 @Api(value = "文章业务的controller",tags = {"文章业务的controller"})
 @RequestMapping("article")
 public interface ArticleControllerApi {
+    /**
+     * 发布文章
+     * @param newArticleBO
+     * @param result
+     * @return
+     */
     @ApiOperation(value = "用户发文",notes = "用户发文",httpMethod = "POST")
-    @PostMapping("createAricle")
+    @PostMapping("createArticle")
     GraceResult createArticle(@RequestBody @Valid NewArticleBO newArticleBO, BindingResult result);
 }

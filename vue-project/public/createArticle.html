@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+		<title>发文章</title>
+		<link rel="stylesheet" href="css/createArticle.css" />
+		<link rel="stylesheet" href="css/center.css" />
+		<!-- <style type="text/css"></style> -->
+	</head>
+	<body style="background-color: #F8F8F8">
+		<div id="editor" class="mybody">
+			<!-- 顶部 -->
+			<div id="whiteHeader" class="red-header">
+				<div class="head_wrapper">
+					<!-- <img src="img/pic-mng.png" class="center-logo" /> -->
+					<div class="right-me-info">
+						<img :src="userInfo.face" class="me-face" />
+						<span class="me-nickname">{{userInfo.nickname}}</span>
+					</div>
+				</div>
+			</div>
+			<!-- 富文本编辑器 -->
+			<div class="editor-container" id="editor2">
+				<div class="article-title-wrapper">
+					<input id="title" class="article-title" placeholder="请输入文字标题(6-30长度)" v-model="articleTitle" maxlength="30" />
+				</div>
+				<div class="article-content-wrapper">
+					<div id="summernote" class="summernote">
+					</div>
+				</div>
+
+				<div class="other-info">
+					<div class="cover-wrapper">
+						<div class="cover">文章类型</div>
+						<div class="choose-type">
+							<select v-model="articleCategory">
+								<option :value="cat.id" v-for="(cat,index) in catList" v-key="index">{{cat.name}}</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="cover-wrapper">
+						<div class="cover">文章封面</div>
+						<div class="choose-type">
+							<div>
+								<input type="radio" name="articleType" value="1" v-model="articleType" checked />
+								<span class="choose-words">单封面</span>
+							</div>
+							<div style="margin-left: 30px;">
+								<input type="radio" name="articleType" value="2" v-model="articleType" />
+								<span class="choose-words">无封面</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="cover-wrapper" v-show="articleType==1">
+						<div class="cover"></div>
+						<div class="choose-cover">
+							<div class="uploader-comp">
+								<div class="block-choose" id="block-choose" :style="coverStyle">
+									<img src="./img/icon-go-upload.png" style="width: 20px;height: 20px;align-self: center;" v-show="articleCover==''||articleCover==null" />
+								</div>
+								<input type="file" @change="uploadCover" id="inputPic" class="inputPic" accept="image/jpeg,image/jpg,image/png" />
+							</div>
+							<div style="margin-top: 10px;color: #9b9d9e;">
+								请上传jpg、jpeg、png格式的封面图
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="publish-bottom">
+					<div class="buttons">
+						<button class="white-btn" type="button" @click="preview">预览</button>
+						<button class="white-btn" type="button" @click="preview">保存草稿</button>
+						<button class="white-btn" type="button" @click="doTiming">{{appointWords}}</button>
+						<input type="text" class="timing-date-picker" placeholder="定时日期" id="choose-date" v-show="isAppoint==1" readonly />
+						<button type="button" class="red-btn" @click="publish">发布文章</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="libs/vue.min.js"></script>
+	<script src="libs/axios.min.js"></script>
+	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" />
+	<script src="libs/jquery-3.4.1.min.js"></script>
+	<script src="libs/layDate-v5.0.9/laydate/laydate.js"></script>
+	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/summernote/dist/summernote.css" />
+	<script src="libs/summernote/dist/summernote.js"></script>
+	<script src="libs/summernote/lang/summernote-zh-CN.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+
+			el: '#editor',
+
+			data: {
+				userInfo: {
+					uid: '1',
+					nickname: 'mob',
+					face: 'https://crq.oss-cn-beijing.aliyuncs.com/photos/2011257B8H6WZK68.jpg',
+					articleStatus: 0,
+				},
+				// 文章类别列表
+				catList: [],
+				// 2：及时发布，1：定时发布
+				isAppoint: 2,
+				appointWords: '定时发布',
+				articleTitle: '',
+				// 文章领域
+				articleCategory: 0,
+				articleType: '1',
+				showUploadCover: true,
+				articleCover: '',
+				coverStyle: '',
+				// 定时发布的事件
+				timingDate: '',
+			},
+			computed: {},
+
+			created() {
+				this.getAllCategory()
+			},
+			mounted() {
+				let _this = this
+				// 初始化编辑器
+				$('#summernote').summernote({
+					placeholder: '请输入正文...',
+					lang: 'zh-CN',
+					height: 500,
+					width: 800,
+					border: 0,
+					// disableDragAndDrop: true, // 禁止文件拖放
+					toolbar: [
+						['style', ['style']],
+						['font', ['bold', 'underline', 'clear']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						['table', ['table']],
+						['insert', ['link', 'picture']],
+						['view', ['fullscreen', 'codeview', 'help']],
+					],
+					// 回调函数
+					callbacks: {
+						// summernote 初始化
+						onInit: function() {
+							// console.log('Summernote is launched');
+							// 去除边框
+							// .note-editor.note-frame
+							$('.note-editor.note-frame').css({
+								border: '0'
+							})
+							$('.panel-default>.panel-heading').css({
+								'background-color': '#ffffff',
+								'border-color': '#ffffff',
+							})
+							$('.note-editor.note-frame .note-statusbar').css({
+								'background-color': '#ffffff',
+								'border-top-color': '#fff',
+							})
+						},
+						// 图片上传
+						onImageUpload: function(files) {
+							console.log(files)
+							let multiForm = new FormData() //创建form对象
+							for (let i = 0; i < files.length; i++) {
+								let f = files[i]
+								multiForm.append('files', f, f.name) //append 向form表单添加数据
+							}
+							// 多文件上传
+							axios
+								.post(
+									'http://crq.com:8004/fs/uploadSomeFiles?userId=' +
+									_this.userInfo.uid,
+									multiForm, {
+										headers: {
+											'Content-Type': 'multipart/form-data',
+										},
+									}
+								)
+								.then((res) => {
+									if (res.data.status == 200) {
+										let imagesList = res.data.data
+										console.log(imagesList)
+										// 上传图片到服务器，生成图片结点
+										for (let i = 0; i < imagesList.length; i++) {
+											let node = document.createElement('img')
+											node.src = imagesList[i]
+											$('#summernote').summernote('insertNode', node)
+										}
+										if (imagesList.length < files.length) {
+											alert(
+												'有' +
+												(files.length - imagesList.length) +
+												'张图片上传失败，\n请保证图片不能为空，并且符合 jpg/png/jpeg 的后缀格式！'
+											)
+										}
+										$summernote.summernote('insertNode', imgNode)
+									} else {
+										alert(res.data.msg)
+										console.log(res.data.msg)
+									}
+								})
+						},
+					},
+				})
+				// 初始化日历控件
+				lay('#version').html('-v' + laydate.v)
+
+				laydate.render({
+					elem: '#choose-date',
+					type: 'datetime',
+					min: 0,
+					max: 3,
+					format: 'yyyy-MM-dd HH:mm:ss',
+					done: function(value, date) {
+						// 选择完后的回调
+						console.log(value) //得到日期生成的值，如：2020-08-18
+						console.log(date) //得到日期时间对象：{year: 2020, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+						_this.timingDate = value
+					},
+				})
+			},
+			methods: {
+				//预览文章
+				preview() {},
+				//获得所有文章类型
+				getAllCategory() {
+					axios.get('http://crq.com:8001/category/getAll')
+						.then((res) => {
+							console.log(JSON.stringify(res.data))
+							if (res.data.status == 200) {
+								let catList = res.data.data
+								let tempCat = {
+									id: 0,
+									name: '请选择'
+								}
+								catList.unshift(tempCat)
+								this.catList = catList
+							} else {
+								alert(res.data.msg)
+							}
+						})
+				},
+				// 定时发布
+				doTiming() {
+
+				},
+				// 发布文章
+				publish() {
+					if (this.isAppoint == 1) {
+						if (this.isEmpty(this.timingDate)) {
+							alert('请选择一个定时发布的时间')
+							return false
+						}
+					}
+					let articleTitle = this.articleTitle
+					if (this.isEmpty(articleTitle)) {
+						alert('文章标题不能为空')
+						return false
+					}
+					//获得输入的内容
+					let articleContent = $('#summernote').summernote('code')
+					console.log(articleContent)
+					if (this.isEmpty(articleContent)) {
+						alert('文章内容不能为空')
+						return false
+					}
+					if (articleContent.length > 9999) {
+						alert('文章内容不能超过10000个字')
+						return false
+					}
+					let articleCategory = this.articleCategory
+					if (articleContent == 0) {
+						alert('请选择一个文章类型')
+						return false
+					}
+					let articleType = this.articleType
+					console.log('articleContent=' + articleType)
+					if (articleType != 1 && articleType != 2) {
+						alert('请选择文章封面类型')
+						return false
+					}
+					let articleCover = this.articleCover
+					if (articleType == 1) {
+						if (this.isEmpty(articleCover)) {
+							alert('请上传一个封面图')
+							return false
+						}
+					}
+					let articleBO = {
+						title: articleTitle,
+						content: articleContent,
+						categoryId: articleCategory,
+						articleType: articleType,
+						articleCover: articleCover,
+						isAppoint: this.isAppoint,
+						publishUserId: this.userInfo.uid,
+						publishTime: this.timingDate
+					}
+					axios.post('http://crq.com:8001/article/createArticle', articleBO)
+						.then((res) => {
+							console.log(res.data)
+							if (res.data.status == 200) {
+								let userAccountInfo = res.data.data
+								console.log(userAccountInfo)
+								alert('文章创建成功, 待审核通过后将在首页展示')
+							} else {
+								alert(res.data.msg)
+							}
+						})
+				},
+				// 上传封面
+				uploadCover() {
+					let _this = this
+					let f = document.getElementById('inputPic').files[0]
+					let multiForm = new FormData()
+					multiForm.append('files', f, f.name) // append向表单添加数据
+					//请求后端获取最新数据
+					let fileServer = 'http://crq.com:8004/fs/uploadSomeFiles?userId=' +
+						_this.userInfo.uid
+					axios
+						.post(fileServer, multiForm, {
+							headers: {
+								'Content-Type': 'multipart/form-data',
+							},
+						})
+						.then((res) => {
+							if (res.data.status == 200) {
+								let imagesList = res.data.data
+								console.log(res.data.data)
+								if (imagesList.length < 1) {
+									alert(
+										'张图片上传失败, 请保证图片不能为空, 并且符合jpg/png/jpeg 的后缀格式!'
+									)
+								} else {
+									_this.articleCover = imagesList[0]
+									_this.coverStyle =
+										'background-image: url(' + imagesList[0] + ');'
+									_this.coverStyle += 'background-repeat: no-repeat;'
+									_this.coverStyle += 'background-position: center center;'
+									_this.coverStyle += 'background-size: cover;'
+								}
+							} else {
+								alert(res.data.msg)
+								console.log(res.data.msg)
+							}
+						})
+				},
+				// 判空
+				isEmpty(str) {
+					if (str == null || str == '' || str == undefined) {
+						return true
+					} else {
+						return false
+					}
+				}
+			},
+		})
+	</script>
+</html>
