@@ -4,6 +4,7 @@ import com.soft1851.article.mapper.ArticleMapper;
 import com.soft1851.article.mapper.ArticleMapperCustom;
 import com.soft1851.article.service.ArticleService;
 import com.soft1851.enums.ArticleAppointType;
+import com.soft1851.enums.ArticleReviewLevel;
 import com.soft1851.enums.ArticleReviewStatus;
 import com.soft1851.enums.YesOrNo;
 import com.soft1851.exception.GraceException;
@@ -11,7 +12,8 @@ import com.soft1851.pojo.Article;
 import com.soft1851.pojo.Category;
 import com.soft1851.pojo.bo.NewArticleBO;
 import com.soft1851.result.ResponseStatusEnum;
-import lombok.RequiredArgsConstructor;
+import com.soft1851.utils.extend.AliTextReviewUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
  * @author crq
  */
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Slf4j
+//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ArticleServiceImpl implements ArticleService {
-    private final ArticleMapper articleMapper;
-    private final Sid sid;
-    private final ArticleMapperCustom articleMapperCustom;
+    @Autowired
+    private ArticleMapper articleMapper;
+    @Resource
+    private  Sid sid;
+    @Autowired
+    private  ArticleMapperCustom articleMapperCustom;
+    @Autowired
+    private  AliTextReviewUtil aliTextReviewUtil;
 
     @Override
     public void createArticle(NewArticleBO newArticleBO, Category category) {
@@ -54,6 +63,26 @@ public class ArticleServiceImpl implements ArticleService {
         if(res != 1) {
             GraceException.display(ResponseStatusEnum.ADMIN_CREATE_ERROR);
         }
+
+        System.out.println("测试测试测测试");
+        System.out.println(newArticleBO.getTitle()
+                + newArticleBO.getContent());
+        //通过阿里只能AI实现对文章文本的自动检测
+        String reviewResult = aliTextReviewUtil.reviewTextContent(newArticleBO.getTitle()
+        + newArticleBO.getContent()
+        );
+        log.info("审核结果"+reviewResult);
+        if(ArticleReviewLevel.PASS.type.equalsIgnoreCase(reviewResult)) {
+            log.info("审核通过");
+            this.updateArticleStatus(articleId,ArticleReviewStatus.SUCCESS.type);
+        }else if(ArticleReviewLevel.REVIEW.type.equalsIgnoreCase(reviewResult)) {
+            log.info("需要人工复审");
+            this.updateArticleStatus(articleId,ArticleReviewStatus.WAITING_MANUAL.type);
+        }else if(ArticleReviewLevel.BLOCK.type.equalsIgnoreCase(reviewResult)) {
+            log.info("审核不通过");
+            this.updateArticleStatus(articleId,ArticleReviewStatus.FAILED.type);
+        }
+
     }
 
     @Override
