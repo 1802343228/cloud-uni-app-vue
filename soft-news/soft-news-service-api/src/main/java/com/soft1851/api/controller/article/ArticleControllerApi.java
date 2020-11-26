@@ -5,10 +5,7 @@ import com.soft1851.result.GraceResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -60,5 +57,14 @@ public interface ArticleControllerApi {
     @ApiOperation(value = "用户撤回文章",notes = "用户撤回文章",httpMethod = "POST")
     GraceResult withdraw(@RequestParam String userId,@RequestParam String articleId);
 
+
+    /**
+     * 文章详情查询
+     * @param articleId
+     * @return
+     */
+    @GetMapping("/detail")
+    @ApiOperation(value = "文章详情查询",notes = "文章详情查询",httpMethod = "GET")
+    GraceResult detail(@RequestParam String articleId);
 
 }

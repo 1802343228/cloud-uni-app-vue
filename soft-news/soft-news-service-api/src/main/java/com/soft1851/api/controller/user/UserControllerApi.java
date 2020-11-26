@@ -55,4 +55,13 @@ public interface UserControllerApi {
     @PostMapping("/userBasicInfo")
     @ApiOperation(value = "获取用户基础信息",notes = "获取用户基础信息",httpMethod = "POST")
     GraceResult getUserBasicInfo(@RequestParam String userId);
+
+    /**
+     * 根据用户的Ids查询用户列表
+     * @param userIds
+     * @return
+     */
+    @PostMapping("/queryByIds")
+    @ApiOperation(value = "根据用户的Ids查询用户列表",notes = "根据用户的Ids查询用户列表",httpMethod = "POST")
+    GraceResult queryByIds(@RequestParam String userIds);
 }
