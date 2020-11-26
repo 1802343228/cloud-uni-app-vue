@@ -4,7 +4,6 @@ import com.soft1851.article.mapper.ArticleMapper;
 import com.soft1851.article.mapper.ArticleMapperCustom;
 import com.soft1851.article.service.ArticleService;
 import com.soft1851.enums.ArticleAppointType;
-import com.soft1851.enums.ArticleReviewLevel;
 import com.soft1851.enums.ArticleReviewStatus;
 import com.soft1851.enums.YesOrNo;
 import com.soft1851.exception.GraceException;
@@ -31,13 +30,11 @@ import java.util.Date;
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ArticleServiceImpl  implements ArticleService {
+
     private final ArticleMapper articleMapper;
-    private final ArticleMapperCustom articleMapperCustom;
     private final Sid sid;
-
-
-    @Autowired
-    private  AliTextReviewUtil aliTextReviewUtil;
+    private final ArticleMapperCustom articleMapperCustom;
+    private final AliTextReviewUtil aliTextReviewUtil;
 
 
     @Override
@@ -68,20 +65,20 @@ public class ArticleServiceImpl  implements ArticleService {
         System.out.println(newArticleBO.getTitle()
                 + newArticleBO.getContent());
         //通过阿里只能AI实现对文章文本的自动检测
-        String reviewResult = aliTextReviewUtil.reviewTextContent(newArticleBO.getTitle()
-        + newArticleBO.getContent()
-        );
-        log.info("审核结果"+reviewResult);
-        if(ArticleReviewLevel.PASS.type.equalsIgnoreCase(reviewResult)) {
-            log.info("审核通过");
-            this.updateArticleStatus(articleId,ArticleReviewStatus.SUCCESS.type);
-        }else if(ArticleReviewLevel.REVIEW.type.equalsIgnoreCase(reviewResult)) {
-            log.info("需要人工复审");
-            this.updateArticleStatus(articleId,ArticleReviewStatus.WAITING_MANUAL.type);
-        }else if(ArticleReviewLevel.BLOCK.type.equalsIgnoreCase(reviewResult)) {
-            log.info("审核不通过");
-            this.updateArticleStatus(articleId,ArticleReviewStatus.FAILED.type);
-        }
+//        String reviewResult = aliTextReviewUtil.reviewTextContent(newArticleBO.getTitle()
+//        + newArticleBO.getContent()
+//        );
+//        log.info("审核结果"+reviewResult);
+//        if(ArticleReviewLevel.PASS.type.equalsIgnoreCase(reviewResult)) {
+//            log.info("审核通过");
+//            this.updateArticleStatus(articleId,ArticleReviewStatus.SUCCESS.type);
+//        }else if(ArticleReviewLevel.REVIEW.type.equalsIgnoreCase(reviewResult)) {
+//            log.info("需要人工复审");
+//            this.updateArticleStatus(articleId,ArticleReviewStatus.WAITING_MANUAL.type);
+//        }else if(ArticleReviewLevel.BLOCK.type.equalsIgnoreCase(reviewResult)) {
+//            log.info("审核不通过");
+//            this.updateArticleStatus(articleId,ArticleReviewStatus.FAILED.type);
+//        }
 
     }
 

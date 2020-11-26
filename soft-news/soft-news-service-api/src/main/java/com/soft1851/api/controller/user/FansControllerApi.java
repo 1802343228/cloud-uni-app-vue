@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author crq
@@ -14,10 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("fans")
 public interface FansControllerApi {
     /**
-     * 获取所有用户信息
+     * 查询当前用户是否关注作者
+     * @param writerId
+     * @param fanId
      * @return
      */
-    @ApiOperation(value = "获得所有粉丝",notes = "获得所有粉丝",httpMethod = "POST")
+    @ApiOperation(value = "查询当前用户是否关注作者",notes = "查询当前用户是否关注作者",httpMethod = "POST")
+    @PostMapping("/isMeFollowThisWriter")
+    GraceResult isMeFollowThisWriter(@RequestParam String writerId,@RequestParam String fanId);
+
+    /**
+     * 关注作者，成为粉丝
+     * @param writerId
+     * @param fanId
+     * @return
+     */
+    @ApiOperation(value = "关注作者，成为粉丝",notes = "关注作者，成为粉丝",httpMethod = "POST")
     @PostMapping("/follow")
-    GraceResult getFollow();
+    GraceResult follow(@RequestParam String writerId,@RequestParam String fanId);
 }
