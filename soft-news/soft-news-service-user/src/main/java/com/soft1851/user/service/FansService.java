@@ -18,4 +18,12 @@ public interface FansService {
      * @param fanId
      */
     public void follow(String writerId,String fanId);
+
+
+    /**
+     * 取关
+     * @param writerId
+     * @param fanId
+     */
+    void unfollow(String writerId,String fanId);
 }
