@@ -1,26 +1,64 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-            "path" : "pages/message/message",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "留言板",
-				"navigationBarBackgroundColor":"#A1CED7",
-				"navigationBarTextStyle":"black"
-            }
-            
-        },
+	"pages": [
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/menu/menu",
+			"style": {
+				"navigationBarBackgroundColor": "#F8F8F8",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "奈雪の茶"
+			}
+		}, {
+			"path": "pages/take-foods/take-foods",
+			"style": {
+				"navigationBarBackgroundColor": "#F8F8F8",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "奈雪の茶"
+			}
+		}, {
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarBackgroundColor": "#F8F8F8",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "个人中心"
 			}
 		}
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#919293",
+		"selectedColor": "#97AF13",
+		"backgroundColor": "#FFF",
+		"borderStyle": "black",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "首页",
+			"iconPath": "static/images/tabBar/index.png",
+			"selectedIconPath": "static/images/tabBar/index_selected.png"
+		}, {
+			"pagePath": "pages/menu/menu",
+			"text": "点餐",
+			"iconPath": "static/images/tabBar/drink.png",
+			"selectedIconPath": "static/images/tabBar/drink_selected.png"
+		}, {
+			"pagePath": "pages/take-foods/take-foods",
+			"text": "取餐",
+			"iconPath": "static/images/tabBar/take.png",
+			"selectedIconPath": "static/images/tabBar/take_selected.png"
+		}, {
+			"pagePath": "pages/mine/mine",
+			"text": "我的",
+			"iconPath": "static/images/tabBar/mine.png",
+			"selectedIconPath": "static/images/tabBar/mine_selected.png"
+		}]
 	}
 }
