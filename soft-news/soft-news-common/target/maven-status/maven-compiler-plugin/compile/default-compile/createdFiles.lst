@@ -7,6 +7,7 @@ com\soft1851\utils\extend\AliImageReviewUtil.class
 com\soft1851\utils\extend\AliyunResource.class
 org\n3r\idworker\Code.class
 org\n3r\idworker\strategy\FileLock.class
+com\soft1851\utils\extend\AliTextReviewUtil.class
 com\soft1851\enums\ArticleReviewLevel.class
 META-INF\spring-configuration-metadata.json
 com\soft1851\utils\IpUtil.class
@@ -46,4 +47,5 @@ org\n3r\idworker\utils\Serializes.class
 com\soft1851\utils\SmsUtil.class
 org\n3r\idworker\utils\Ip.class
 org\n3r\idworker\strategy\DefaultWorkerIdStrategy.class
+com\soft1851\enums\Sex.class
 com\soft1851\exception\GraceExceptionHandler.class

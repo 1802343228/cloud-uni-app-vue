@@ -6,6 +6,7 @@ com\soft1851\api\interceptors\UserActiveInterceptor.class
 com\soft1851\api\controller\user\HelloControllerApi.class
 com\soft1851\api\config\CloudConfig.class
 com\soft1851\api\BaseController.class
+com\soft1851\api\interceptors\ArticleReadInterceptor.class
 com\soft1851\api\controller\article\ArticleControllerApi.class
 com\soft1851\api\config\CorsConfig.class
 com\soft1851\api\controller\admin\AdminMsgControllerApi.class
@@ -19,3 +20,4 @@ com\soft1851\api\interceptors\UserTokenInterceptor.class
 com\soft1851\api\controller\user\FansControllerApi.class
 com\soft1851\api\config\Swagger2.class
 com\soft1851\api\controller\admin\FriendLinkControllerApi.class
+com\soft1851\api\service\BaseService.class

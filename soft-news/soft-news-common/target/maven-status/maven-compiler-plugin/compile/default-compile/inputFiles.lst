@@ -8,6 +8,7 @@ D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\org\n3r\idwork
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\utils\DesensitizationUtil.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\org\n3r\idworker\RandomCodeStrategy.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\org\n3r\idworker\strategy\DefaultWorkerIdStrategy.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\utils\extend\AliTextReviewUtil.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\utils\FaceVerifyUtil.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\org\n3r\idworker\utils\Utils.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\enums\FaceVerifyType.java
@@ -31,6 +32,7 @@ D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\e
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\exception\GraceExceptionHandler.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\utils\JsonUtil.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\enums\YesOrNo.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\enums\Sex.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\org\n3r\idworker\utils\HttpReq.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\enums\ArticleCoverType.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-common\src\main\java\com\soft1851\utils\extend\AliImageReviewUtil.java

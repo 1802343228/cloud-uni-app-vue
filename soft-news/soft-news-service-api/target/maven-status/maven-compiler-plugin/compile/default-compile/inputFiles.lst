@@ -5,11 +5,13 @@ D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\controller\article\ArticleControllerApi.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\config\CorsConfig.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\config\CloudConfig.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\interceptors\ArticleReadInterceptor.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\my\mapper\MyMapper.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\interceptors\AdminTokenInterceptor.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\interceptors\UserActiveInterceptor.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\interceptors\PassportInterceptor.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\controller\user\FansControllerApi.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\service\BaseService.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\BaseController.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\controller\admin\FriendLinkControllerApi.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-service-api\src\main\java\com\soft1851\api\interceptors\UserTokenInterceptor.java

@@ -1,8 +1,10 @@
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\bo\AdminLoginBO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\vo\UserAccountInfoVO.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\vo\ArticleDetailVO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\vo\AppUserVO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\AdminUser.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\Article.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\vo\RegionRatioVO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\validate\CheckUrl.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\mo\FriendLinkMO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\validate\CheckUrlValidate.java
@@ -11,6 +13,7 @@ D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\po
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\AppUser.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\bo\NewArticleBO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\bo\RegistLoginBO.java
+D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\vo\FansCountsVO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\bo\SaveFriendLinkBO.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\Fans.java
 D:\dev\cloud-uni-app-vue\soft-news\soft-news-model\src\main\java\com\soft1851\pojo\Category.java
