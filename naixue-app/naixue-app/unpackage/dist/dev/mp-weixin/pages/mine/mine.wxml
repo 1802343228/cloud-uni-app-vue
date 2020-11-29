@@ -1,1 +1,1 @@
-<view></view>
+<view><block wx:if="{{isLogin}}"><view class="font-size-lg"><text>{{userInfo.nickName}}</text></view></block><block wx:else><view data-event-opts="{{[['tap',[['login',['$event']]]]]}}" class="font-size-lg font-weight-bold" bindtap="__e">请点击授权登录</view></block></view>

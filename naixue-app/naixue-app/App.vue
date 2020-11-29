@@ -12,8 +12,9 @@
 	}
 </script>
 
-<style>
-	/*每个页面公共css */
-	@import url("@/static/style/app.scss");
-	@import url("@/static/iconfont/iconfont.css");
+<style lang="scss">
+	/*每个页面公共scss */
+	@import "/static/style/app.scss";
+	/*每个页面图标css */
+	@import "/static/iconfont/iconfont.css";
 </style>
