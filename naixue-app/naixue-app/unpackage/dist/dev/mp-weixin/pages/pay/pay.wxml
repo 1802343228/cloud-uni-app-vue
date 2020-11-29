@@ -1,0 +1,1 @@
+<view><view class="_h3">{{"订单总价："+total}}</view></view>

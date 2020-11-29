@@ -8,7 +8,8 @@
     "pages/address/address",
     "pages/address/add",
     "pages/address/edit",
-    "pages/store/store"
+    "pages/stores/stores",
+    "pages/pay/pay"
   ],
   "subPackages": [],
   "window": {

@@ -68,12 +68,21 @@
 		    
 		}
         ,{
-            "path" : "pages/store/store",
+            "path" : "pages/stores/stores",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "选择门店",
                 "navigationBarBackgroundColor": "#F8F8F8",
                 "navigationBarTextStyle": "black"
+            }
+            
+        }
+        ,{
+            "path" : "pages/pay/pay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
             }
             
         }
