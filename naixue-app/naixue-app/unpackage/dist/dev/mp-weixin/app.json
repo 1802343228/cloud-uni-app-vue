@@ -4,7 +4,10 @@
     "pages/menu/menu",
     "pages/take-foods/take-foods",
     "pages/mine/mine",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/address/address",
+    "pages/address/add",
+    "pages/address/edit"
   ],
   "subPackages": [],
   "window": {
