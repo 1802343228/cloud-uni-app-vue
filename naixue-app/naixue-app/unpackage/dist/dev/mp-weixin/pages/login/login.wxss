@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.intro {
+.intro.data-v-b237504c {
   width: 100%;
   height: 60vh;
   display: -webkit-box;
@@ -43,15 +43,15 @@
   font-size: font-size-base;
   color: text-color-assist;
 }
-.intro image {
+.intro image.data-v-b237504c {
   width: 165rpx;
   height: 165rpx;
 }
-.intro .tips {
+.intro .tips.data-v-b237504c {
   line-height: 72rpx;
   text-align: center;
 }
-.bottom {
+.bottom.data-v-b237504c {
   height: 40vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -65,7 +65,7 @@
           justify-content: space-between;
   padding: 0 40rpx;
 }
-.bottom .login-btn {
+.bottom .login-btn.data-v-b237504c {
   width: 100%;
   -webkit-border-radius: 50rem !important;
           border-radius: 50rem !important;
@@ -80,15 +80,15 @@
           justify-content: center;
   padding: 10rpx 0;
 }
-.bottom .login-btn image {
+.bottom .login-btn image.data-v-b237504c {
   width: 36rpx;
   height: 30rpx;
   margin-right: 10rpx;
 }
-.bottom .row .grid {
+.bottom .row .grid.data-v-b237504c {
   width: 20%;
 }
-.bottom .row .grid image {
+.bottom .row .grid image.data-v-b237504c {
   width: 60rpx;
   height: 60rpx;
   margin-bottom: 10rpx;

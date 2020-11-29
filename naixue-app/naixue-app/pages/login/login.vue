@@ -10,22 +10,12 @@
 		</view>
 		<view class="bottom">
 			<!-- #ifdef MP-WEIXIN -->
-			<button
-				type="primary"
-				size="default"
-				class="login-btn"
-				open-type="getUserInfo"
-				lang="zh_CN"
-				@getuserinfo="wxLogin"
-			>
+			<button type="primary" size="default" class="login-btn" open-type="getUserInfo" lang="zh_CN" @getuserinfo="wxLogin">
 				<image src="/static/images/mine/wechat.png"></image>
 				微信一键登录
 			</button>
 			<!-- #endif -->
-			<view
-				class="d-flex flex-column justify-content-evenly align-items-center text-center"
-				style="height: 30vh;"
-			>
+			<view class="d-flex flex-column justify-content-evenly align-items-center text-center" style="height: 30vh;">
 				<view class="w-100 font-size-base text-color-assist">新用户登录即加入会员，享会员权益</view>
 				<view class="w-100 row d-flex just-content-around align-items-center font-size-sm text-color-assist">
 					<view class="grid">
@@ -56,77 +46,81 @@
 </template>
 
 <script>
-	import { mapState,mapMutations } from 'vuex';
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			...mapMutations(['Login']),
-			wxLogin(e) {
-				const that = this;
-				let userInfo = e.detail.userInfo;
-				console.log(userInfo);
-				uni.showLoading({
-					title:'登录中...'
-				});
-				return new Promise((resolve,reject) => {
-					uni.login({
-						provider:'weixin',
-					    success(login_res) {
-					    	if(login_res.code) {
-								resolve(login_res.code)
-							} else {
-								reject(new Error('微信登录失败'));
-							}
-					    },
-						fail(e) {
-							reject(new Error('微信登录失败'))
+import { mapState, mapMutations } from "vuex";
+export default {
+	data() {
+		return {};
+	},
+	computed: {
+		...mapState(["userInfo", "isLogin"])
+	},
+	methods: {
+		...mapMutations(["Login"]),
+		wxLogin(e) {
+			const that = this;
+			let userInfo = e.detail.userInfo;
+			console.log(userInfo);
+			uni.showLoading({
+				title: "登录中..."
+			});
+			return new Promise((resolve, reject) => {
+				uni.login({
+					provider: "weixin",
+					success(login_res) {
+						if (login_res.code) {
+							resolve(login_res.code);
+						} else {
+							reject(new Error("微信登录失败"));
 						}
-					});
-				}).then(code => {
-					console.log('code',code);
+					},
+					fail(e) {
+						reject(new Error("微信登录失败"));
+					}
+				});
+			})
+				.then(code => {
+					console.log("code:", code);
 					return uniCloud.callFunction({
-						name:'login',
-						data:{
+						name: "login",
+						data: {
 							code,
 							userInfo
 						}
 					});
-				}).then(res => {
+				})
+				.then(res => {
 					uni.hideLoading();
 					console.log(res);
-					if(res.result.status !== 0) {
+					if (res.result.status !== 0) {
 						return Promise.reject(new Error(res.result.msg));
 					}
 					console.log(res.result.data);
-					that.Login(res.result.data)
+					that.Login(res.result.data);
 					uni.setStorage({
-						key:'token',
-						data:res.result.token
+						key: "token",
+						data: res.result.token
 					});
 					uni.showModal({
-						content:'登陆成功',
-						showCancel:false
+						content: " 登录成功",
+						showCancel: false
 					});
 					uni.hideLoading();
 					uni.navigateBack();
-				}).catch(err => {
+				})
+				.catch(err => {
 					console.log(err);
 					uni.hideLoading();
 					uni.showModal({
-						content:'出现错误，请稍后再试.'+err.message,
-						showCancel:false
+						content: "出现错误,请稍后再试." + err.message,
+						showCancel: false
 					});
 				});
-			},
 		}
 	}
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .intro {
 	width: 100%;
 	height: 60vh;
@@ -136,12 +130,12 @@
 	justify-content: space-evenly;
 	font-size: font-size-base;
 	color: text-color-assist;
-	
+
 	image {
 		width: 165rpx;
 		height: 165rpx;
 	}
-	.tips{
+	.tips {
 		line-height: 72rpx;
 		text-align: center;
 	}
@@ -166,7 +160,7 @@
 		}
 	}
 	.row {
-		.grid{
+		.grid {
 			width: 20%;
 			image {
 				width: 60rpx;
