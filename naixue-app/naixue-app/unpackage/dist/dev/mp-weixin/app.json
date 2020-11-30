@@ -55,5 +55,6 @@
       "desc": "查找附件门店"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap10.json"
 }

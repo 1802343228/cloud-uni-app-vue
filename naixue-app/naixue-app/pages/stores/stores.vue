@@ -101,7 +101,7 @@
 							maps.id = i;
 							maps.latitude = resMap[i].latitude;
 							maps.longitude = resMap[i].longitude;
-							maps.iconPath = '/static/images/logo.png';
+							maps.iconPath = '../../static/images/logo.png';
 							maps.width = 30;
 							maps.height = 30;
 							maps.callout = {content:resMap[i].name,display:"ALWAYS"};
