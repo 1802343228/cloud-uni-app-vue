@@ -1,6 +1,6 @@
 'use strict';
 const crypto = require('crypto')
-const {   
+const {
 	getOffsetDate,
 	getNowFormatDate
 } = require('time')
