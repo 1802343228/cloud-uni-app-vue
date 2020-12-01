@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"curChapter { background-color: #8395a7; color: #FFFFFF; }\n",],undefined,{path:"./pages/reading/reading.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/reading/reading.wxml') } }));

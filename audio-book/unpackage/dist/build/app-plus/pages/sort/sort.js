@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"selected { color: #f7646d; }\n",],undefined,{path:"./pages/sort/sort.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/sort/sort.wxml') } }));

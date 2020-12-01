@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"geryTheme { background-color: #a8b0c3; }\n",],undefined,{path:"./pages/bookDetail/bookDetail.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/bookDetail/bookDetail.wxml') } }));
