@@ -95,6 +95,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/member-code/member-code",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
