@@ -251,37 +251,39 @@ export default {
 		...mapState(["choseStore", "orderType", "choseAddress", "isLogin"]),
 		goodCartNum() {
 			//计算商品选中数量
-			return id => this.cart.reduce((acc,cur) => {
-				if(cur.id === id) {
-					return (acc += cur.number);
-				}
-				return acc;
-			},0);
+			return id =>
+				this.cart.reduce((acc, cur) => {
+					if (cur.id === id) {
+						return (acc += cur.number);
+					}
+					return acc;
+				}, 0);
 		},
 		menuCartNum() {
 			//计算类别汇总数量
-			return id => this.cart.reduce((acc,cur) => {
-				if(cur.cate_id === id) {
-					return ( acc += cur.number );
-				}
-				return acc;
-			},0);
+			return id =>
+				this.cart.reduce((acc, cur) => {
+					if (cur.cate_id === id) {
+						return (acc += cur.number);
+					}
+					return acc;
+				}, 0);
 		},
 		getCartGoodsNumber() {
 			//计算购物车总数量
-			return this.cart.reduce((acc,cur) => acc +cur.number,0);
+			return this.cart.reduce((acc, cur) => acc + cur.number, 0);
 		},
 		getCartGoodsPrice() {
 			//计算购物车总价格
-			return this.cart.reduce((acc,cur) => acc + cur.number * cur.price,0);
+			return this.cart.reduce((acc, cur) => acc + cur.number * cur.price, 0);
 		},
 		disabledPay() {
 			//判定是否达到起送价格
-			return this.orderType == 'takeout' && this.getCartGoodsPrice <38 ? true :false;
+			return this.orderType == "takeout" && this.getCartGoodsPrice < 38 ? true : false;
 		},
 		spread() {
 			//起送差额
-			if(this.orderType != 'takeout') return;
+			if (this.orderType != "takeout") return;
 			return parseFloat((38 - this.getCartGoodsPrice).toFixed(2));
 		}
 	},
@@ -294,104 +296,109 @@ export default {
 		...mapMutations(["SET_ORDERTYPE"]),
 		//切换自取
 		tapTakein() {
-			if(Object.keys(this.choseStore).length != 0) {
-				this.SET_ORDERTYPE('takein');
+			if (Object.keys(this.choseStore).length != 0) {
+				this.SET_ORDERTYPE("takein");
 			} else {
 				uni.navigateTo({
-					url:'../stores/stores'
+					url: "../stores/stores"
 				});
 			}
 		},
 		//切换外卖
 		tapTakeOut() {
-			if(!this.isLogin) {
+			if (!this.isLogin) {
 				uni.navigateTo({
-					url:'../login/login'
+					url: "../login/login"
 				});
 				return;
 			}
 			uni.navigateTo({
-				url:'../address/address'
-			})
+				url: "../address/address"
+			});
 		},
 		//选取门店
 		tapStore() {
 			uni.navigateTo({
-				url:'../stores/stores'
+				url: "../stores/stores"
 			});
 		},
 		//点赞自动加载数据
 		init() {
-			if(Object.keys(this.choseStore).length == 0) {
+			if (Object.keys(this.choseStore).length == 0) {
 				uni.navigateTo({
-					url:'../stores/stores'
+					url: "../stores/stores"
 				});
 			}
-			return uniCloud.callFunction({
-				name:'goods'
-			}).then(res => {
-				this.goods = res.result.data;
-			});
+			return uniCloud
+				.callFunction({
+					name: "goods"
+				})
+				.then(res => {
+					this.goods = res.result.data;
+				});
 		},
 		//计算右侧goods的top和bottom的高度
 		calcSize() {
 			let h = 10;
 			//计算右侧banner高度
-			let view = uni.createSelectorQuery().select('#ads');
-			view.fields({
-				size:true
-			},
-			data => {
-				h += Math.floor(data.height);
-			}
+			let view = uni.createSelectorQuery().select("#ads");
+			view.fields(
+				{
+					size: true
+				},
+				data => {
+					h += Math.floor(data.height);
+				}
 			).exec();
 			this.goods.forEach(item => {
 				//计算右侧栏每个good的高
 				let view = uni.createSelectorQuery().select(`#cate-${item._id}`);
-				view.fields({
-					size:true
-				},data => {
-					item.top = h;
-					h += data.height;
-					item.bottom = h;
-				}).exec();
+				view.fields(
+					{
+						size: true
+					},
+					data => {
+						item.top = h;
+						h += data.height;
+						item.bottom = h;
+					}
+				).exec();
 			});
 			this.sizeCalcState = true;
 		},
 		//左侧分类点击事件
 		handleMenuTap(id) {
-			if(!this.sizeCalcState) {
+			if (!this.sizeCalcState) {
 				this.calcSize();
 			}
 			this.currentCateId = id;
-			this.$nextTick(() =>(this.cateScrollTop = this.goods.find(item => item._id == id).top));
-	
+			this.$nextTick(() => (this.cateScrollTop = this.goods.find(item => item._id == id).top));
 		},
 		//右侧滑动事件
 		handleGoodsScroll({ detail }) {
-			if(!this.sizeCalcState) {
+			if (!this.sizeCalcState) {
 				this.calcSize();
 			}
-			const { scrollTop }  = detail;
+			const { scrollTop } = detail;
 			let tabs = this.goods.filter(item => item.top <= scrollTop).reverse();
-			if(tabs.length >0){
+			if (tabs.length > 0) {
 				this.currentCateId = tabs[0]._id;
 			}
 		},
 		//添加购物车
 		handleAddToCart(cate, good, num) {
 			const index = this.cart.findIndex(item => item.id === good._id);
-			if(index > -1){
+			if (index > -1) {
 				this.cart[index].number += num;
-			}else {
+			} else {
 				this.cart.push({
-					id:good._id,
-					cate_id:cate._id,
-					name:good.name,
-					price:good.price,
-					number:num,
-					image:good.images,
-					props_text:good.props_text
+					id: good._id,
+					cate_id: cate._id,
+					name: good.name,
+					price: good.price,
+					number: num,
+					image: good.images,
+					props_text: good.props_text
 				});
 			}
 		},
@@ -399,13 +406,13 @@ export default {
 		handleReduceFromCart(item, good) {
 			const index = this.cart.findIndex(item => item.id === good._id);
 			this.cart[index].number -= 1;
-			if(this.cart[index].number <= 0) {
-				this.cart.splice(index,1);
+			if (this.cart[index].number <= 0) {
+				this.cart.splice(index, 1);
 			}
 		},
 		//展示模态框
 		showGoodDetailModal(item, good) {
-			this.good = JSON.parse(JSON.stringify({...good,number:1}));
+			this.good = JSON.parse(JSON.stringify({ ...good, number: 1 }));
 			this.category = JSON.parse(JSON.stringify(item));
 			this.goodDetailModalVisible = true;
 		},
@@ -417,24 +424,24 @@ export default {
 		},
 		//改变默认属性值
 		changePropertyDefault(index, key) {
-			this.good.prototype[index].values.forEach(value => this.$set(value,'is_default',0));
+			this.good.prototype[index].values.forEach(value => this.$set(value, "is_default", 0));
 			this.good.prototype[index].values[key].is_default = 1;
 			this.good.number = 1;
 		},
 		//计算当前饮品所选属性
 		getGoodSelectedProps(good, type = "text") {
-			if(good.prototype) {
+			if (good.prototype) {
 				let props = [];
-				good.property.forEach(({value}) => {
+				good.property.forEach(({ value }) => {
 					values.forEach(value => {
-						if(value.is_default) {
-							props.push(type === 'text' ? value.value : value.id);
+						if (value.is_default) {
+							props.push(type === "text" ? value.value : value.id);
 						}
 					});
 				});
-				return type === 'text' ? props.join(',') : props;
+				return type === "text" ? props.join(",") : props;
 			}
-			return '';
+			return "";
 		},
 		//模态框加一
 		handlePropertyAdd() {
@@ -442,16 +449,16 @@ export default {
 		},
 		//模态框减1
 		handlePropertyReduce() {
-			if(this.good.number === 1) return;
+			if (this.good.number === 1) return;
 			this.good.number -= 1;
 		},
 		//添加进购物车
 		handleAddToCartInModal() {
-			const product = Object.assign({},this.good, {
-				props_text:this.getGoodSelectedProps(this.good),
-				props:this.getGoodSelectedProps(this.good,'id')
+			const product = Object.assign({}, this.good, {
+				props_text: this.getGoodSelectedProps(this.good),
+				props: this.getGoodSelectedProps(this.good, "id")
 			});
-			this.handleAddToCart(this.category,product,this.good.number);
+			this.handleAddToCart(this.category, product, this.good.number);
 			this.closeGoodDetailModal();
 		},
 		//打开关闭购物车详情
@@ -461,10 +468,10 @@ export default {
 		//清空购物车
 		handleCartClear() {
 			uni.showModal({
-				title:'提示',
-				content:'确认清空购物车吗？',
-				success:({confirm}) => {
-					if(confirm) {
+				title: "提示",
+				content: "确认清空购物车吗？",
+				success: ({ confirm }) => {
+					if (confirm) {
 						this.cartPopupVisible = false;
 						this.cart = [];
 					}
@@ -473,12 +480,12 @@ export default {
 		},
 		//购物车详情减
 		handleCartItemReduce(index) {
-			if(this.cart[index].number === 1) {
-				this.cart.splice(index,1);
+			if (this.cart[index].number === 1) {
+				this.cart.splice(index, 1);
 			} else {
 				this.cart[index].number -= 1;
 			}
-			if(!this.cart.length) {
+			if (!this.cart.length) {
 				this.cartPopupVisible = false;
 			}
 		},
@@ -488,64 +495,69 @@ export default {
 		},
 		//结算按钮操作
 		topay() {
-			if(!this.isLogin) {
+			if (!this.isLogin) {
 				uni.navigateTo({
-					url:'../login/login'
+					url: "../login/login"
 				});
 				return;
 			}
 			uni.showLoading({
-				title:'加载中...'
-			})
-			
-			return uniCloud.callFunction({
-				name:'validateToken',
-				data:{
-					token:uni.getStorageSync('token')
-				}
-			}).then((res) => {
-				if(res.result.status === 0) {
-					uni.hideLoading()
-					if(this.orderType == 'takein' ) {
-						let data = {
-							openId:res.result.openId,
-							goodsInOrder:this.cart,
-							chooseStore:this.choseStore.name
-						}
-						return uniCloud.callFunction({
-							name:'order',
-							data:{
-								data:data,
-								action:'addTakein'
-							}
-						})
-					} else if(this.orderType == 'takeout'){
-						let data = {
-							openId:res.result.openId,
-							goodsInOrder:this.cart,
-							chooseStore:this.choseAddress.storeName,
-							order_address:this.choseAddress._id
-						}
-						return uniCloud.callFunction({
-							name:'order',
-							data:{
-								data:data,
-								action:'addTakeout'
-							}
-						})
+				title: "加载中"
+			});
+			return uniCloud
+				.callFunction({
+					name: "validateToken",
+					data: {
+						token: uni.getStorageSync("token")
 					}
-				} else {
-					uni.hideLoading()
-					uni.showModal({
-						content:res.result.msg,
-						showCancel:false
-					})
-				}
-			}).then(resData => {
-				uni.navigateTo({
-					url:'../pay/pay?order_id=' + resData.result.order_id
 				})
-			})
+				.then(res => {
+					if (res.result.status === 0) {
+						uni.hideLoading();
+						if (this.orderType == "takein") {
+							console.log("进入this.orderType方法");
+							let data = {
+								openId: res.result.openId,
+								goodsInOrder: this.cart,
+								chooseStore: this.choseStore.name
+							};
+							return uniCloud.callFunction({
+								name: "order",
+								data: {
+									data: data,
+									action: "addTakein"
+								}
+							});
+							console.log("进入this.orderType方法");
+						} else if (this.orderType == "takeout") {
+							let data = {
+								openId: res.result.openId,
+								goodsInOrder: this.cart,
+								chooseStore: this.choseAddress.storeName,
+								order_address: this.choseAddress._id
+							};
+							return uniCloud.callFunction({
+								name: "order",
+								data: {
+									data: data,
+									action: "addTakeout"
+								}
+							});
+						}
+					} else {
+						uni.hideLoading();
+						uni.showModal({
+							content: res.result.msg,
+							showCancel: false
+						});
+					}
+				})
+				.then(resData => {
+					console.log("进入跳转页面方法");
+					uni.navigateTo({
+						url: "../pay/pay?order_id=" + resData.result.order_id
+					});
+				});
 		}
 	}
 };
